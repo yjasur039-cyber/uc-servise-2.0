@@ -24,10 +24,21 @@
             line-height: 1.4;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NEW CENTERED LOGO HEADER (Yangi) --- */
+        .centered-header {
+            background-color: var(--ut-dark);
+            padding: 15px 0;
+            border-bottom: 1px solid #102a33;
+            display: flex;
+            justify-content: center; /* O'rtaga tekislash */
+            align-items: center;
+        }
+        .main-logo { height: 28px; }
+
+        /* --- OLD NAVIGATION (Tozalangan va saqlangan) --- */
         header {
             background: var(--ut-dark);
-            height: 56px;
+            height: 50px; /* Biroz pastroq */
             display: flex;
             align-items: center;
             padding: 0 16px;
@@ -37,7 +48,7 @@
             z-index: 1000;
         }
         .menu-icon { color: var(--ut-blue); font-size: 24px; cursor: pointer; }
-        .logo { height: 22px; margin-left: 15px; }
+        .mini-logo { height: 18px; margin-left: 15px; } /* Kichikroq logo */
 
         .path-bar {
             background: #06181e;
@@ -118,9 +129,13 @@
 </head>
 <body>
 
+<div class="centered-header">
+    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="main-logo" alt="Uptodown">
+</div>
+
 <header>
     <div class="menu-icon">☰</div>
-    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="logo" alt="Uptodown">
+    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="mini-logo" alt="Uptodown">
 </header>
 
 <div class="path-bar">Android / Games / Sports / eFootball PES 2026</div>
