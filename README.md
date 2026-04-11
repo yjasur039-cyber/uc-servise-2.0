@@ -24,21 +24,10 @@
             line-height: 1.4;
         }
 
-        /* --- NEW CENTERED LOGO HEADER (Yangi) --- */
-        .centered-header {
-            background-color: var(--ut-dark);
-            padding: 15px 0;
-            border-bottom: 1px solid #102a33;
-            display: flex;
-            justify-content: center; /* O'rtaga tekislash */
-            align-items: center;
-        }
-        .main-logo { height: 28px; }
-
-        /* --- OLD NAVIGATION (Tozalangan va saqlangan) --- */
+        /* --- NAVIGATION --- */
         header {
             background: var(--ut-dark);
-            height: 50px; /* Biroz pastroq */
+            height: 56px;
             display: flex;
             align-items: center;
             padding: 0 16px;
@@ -48,7 +37,7 @@
             z-index: 1000;
         }
         .menu-icon { color: var(--ut-blue); font-size: 24px; cursor: pointer; }
-        .mini-logo { height: 18px; margin-left: 15px; } /* Kichikroq logo */
+        .logo { height: 22px; margin-left: 15px; }
 
         .path-bar {
             background: #06181e;
@@ -62,12 +51,12 @@
         .main-content { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
 
         /* --- APP HEADER --- */
-        .app-header { display: flex; gap: 16px; margin-bottom: 24px; }
+        .app-header { display: flex; gap: 16px; margin-bottom: 24px; align-items: center; }
         .app-icon { 
             width: 100px; height: 100px; 
             border-radius: 22px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-            object-fit: cover;
+            object-fit: cover; /* Rasmni to'liq va buzilmaydigan qiladi */
         }
         .app-info h1 { font-size: 26px; font-weight: 700; margin: 0; }
         .app-sub { font-size: 14px; margin-top: 4px; color: var(--ut-dim); }
@@ -88,7 +77,7 @@
             margin-bottom: 10px;
         }
 
-        /* --- NEW TECHNICAL SECTIONS (100% MATCH) --- */
+        /* --- TECHNICAL SECTIONS (100% MATCH) --- */
         .tech-section-group { margin-top: 35px; }
         .tech-group-title {
             font-size: 16px;
@@ -129,20 +118,16 @@
 </head>
 <body>
 
-<div class="centered-header">
-    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="main-logo" alt="Uptodown">
-</div>
-
 <header>
     <div class="menu-icon">☰</div>
-    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="mini-logo" alt="Uptodown">
+    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="logo" alt="Uptodown">
 </header>
 
 <div class="path-bar">Android / Games / Sports / eFootball PES 2026</div>
 
 <div class="main-content">
     <div class="app-header">
-        <img src="image_980b88.png" class="app-icon">
+        <img src="image_5.png" class="app-icon" alt="eFootball PES 2026 icon">
         <div class="app-info">
             <h1>eFootball PES 2026</h1>
             <div class="app-sub">10.4.0 | <a href="#">Uptodown.com</a></div>
