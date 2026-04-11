@@ -170,7 +170,7 @@
     <div class="tech-grid">
         <div class="tech-item">
             <div class="tech-icon">👤</div>
-            <div class="tech-info"><b>Developer</b><span>KONAMI</span></div>
+            <div class="tech-info"><b>Developer</b><span>uptodown.com</span></div>
         </div>
         <div class="tech-item">
             <div class="tech-icon">📄</div>
