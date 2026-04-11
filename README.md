@@ -1,49 +1,64 @@
 <style>
-    /* Texnik bo'lim uchun maxsus stillar */
-    .specs-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 ta ustun */
-        gap: 40px 20px;
+    /* Rasm galereyasi uchun maxsus stillar */
+    .gallery-container {
         padding: 40px 0;
         border-top: 1px solid #15323d;
         margin-top: 50px;
     }
 
-    .spec-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 ta ustun */
+        gap: 20px;
     }
 
-    /* Dumaloq ko'k ikonkalar */
-    .spec-icon {
-        width: 32px;
-        height: 32px;
-        border: 1px solid #1b85d3;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #1b85d3;
-        font-size: 14px;
-        flex-shrink: 0;
+    .gallery-item {
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
 
-    .spec-info b {
+    .gallery-item:hover {
+        transform: scale(1.05); /* Rasm ustiga bosganda kattalashishi */
+    }
+
+    .gallery-img {
+        width: 100%;
+        height: auto;
         display: block;
-        color: #ffffff;
-        font-size: 15px;
-        margin-bottom: 4px;
-        font-weight: 500;
     }
 
-    .spec-info span, .spec-info a {
-        color: #7e949c;
-        font-size: 14px;
-        text-decoration: none;
+    /* Asboblar paneli uchun stillar */
+    .toolbar {
+        background: #0c262f;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
     }
 
-    .spec-info a:hover { text-decoration: underline; }
+    .toolbar-item {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .toolbar-item:hover {
+        transform: scale(1.2); /* Ikonka ustiga bosganda kattalashishi */
+    }
+
+    .toolbar-img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
 
     .section-title {
         font-size: 18px;
@@ -54,81 +69,61 @@
 </style>
 
 <div class="wrapper">
-    <h2 class="section-title">Technical information</h2>
+    <h2 class="section-title">Screenshots and Images</h2>
     
-    <div class="specs-container">
-        <div class="spec-item">
-            <div class="spec-icon">👤</div>
-            <div class="spec-info">
-                <b>Developer</b>
-                <a href="#">KONAMI</a>
-            </div>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="path/to/image_13.png" class="gallery-img" alt="eFootball PES 2026 Screenshot 1">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">📄</div>
-            <div class="spec-info">
-                <b>License</b>
-                <span>Free</span>
-            </div>
+        <div class="gallery-item">
+            <img src="path/to/image_14.png" class="gallery-img" alt="eFootball PES 2026 Screenshot 2">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">⚽</div>
-            <div class="spec-info">
-                <b>Category</b>
-                <a href="#">Sports</a>
-            </div>
+        <div class="gallery-item">
+            <img src="path/to/image_15.png" class="gallery-img" alt="eFootball PES 2026 Screenshot 3">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-item">
-                <div class="spec-icon">📱</div>
-                <div class="spec-info">
-                    <b>Operating System</b>
-                    <span>Android</span>
-                </div>
-            </div>
+        <div class="gallery-item">
+            <img src="path/to/image_16.png" class="gallery-img" alt="eFootball PES 2026 Screenshot 4">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">⚙️</div>
-            <div class="spec-info">
-                <b>Architecture</b>
-                <span>arm64-v8a</span>
-            </div>
+        <div class="gallery-item">
+            <img src="path/to/image_17.png" class="gallery-img" alt="eFootball PES 2026 Screenshot 5">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">🌐</div>
-            <div class="spec-info">
-                <b>Language</b>
-                <span>English <small>(44 more)</small></span>
-            </div>
+        <div class="gallery-item">
+            <img src="path/to/image_18.png" class="gallery-img" alt="eFootball PES 2026 Screenshot 6">
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <h2 class="section-title">Toolbar Icons</h2>
+    
+    <div class="toolbar">
+        <div class="toolbar-item">
+            <img src="path/to/image_13.png" class="toolbar-img" alt="Toolbar Icon 1">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">📥</div>
-            <div class="spec-info">
-                <b>Downloads</b>
-                <span>74,839,915</span>
-            </div>
+        <div class="toolbar-item">
+            <img src="path/to/image_14.png" class="toolbar-img" alt="Toolbar Icon 2">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">📅</div>
-            <div class="spec-info">
-                <b>Date</b>
-                <span>Apr 10, 2026</span>
-            </div>
+        <div class="toolbar-item">
+            <img src="path/to/image_15.png" class="toolbar-img" alt="Toolbar Icon 3">
         </div>
 
-        <div class="spec-item">
-            <div class="spec-icon">📦</div>
-            <div class="spec-info">
-                <b>Package Name</b>
-                <span>jp.konami.pesam</span>
-            </div>
+        <div class="toolbar-item">
+            <img src="path/to/image_16.png" class="toolbar-img" alt="Toolbar Icon 4">
+        </div>
+
+        <div class="toolbar-item">
+            <img src="path/to/image_17.png" class="toolbar-img" alt="Toolbar Icon 5">
+        </div>
+
+        <div class="toolbar-item">
+            <img src="path/to/image_18.png" class="toolbar-img" alt="Toolbar Icon 6">
         </div>
     </div>
 </div>
