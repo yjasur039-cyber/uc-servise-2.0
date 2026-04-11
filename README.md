@@ -163,7 +163,7 @@
             <div class="tech-item"><div class="tech-icon-box">📥</div><div class="tech-content"><span class="tech-label">Downloads</span><span class="tech-value">1,034,167,963</span></div></div>
             <div class="tech-item"><div class="tech-icon-box">📅</div><div class="tech-content"><span class="tech-label">Date</span><span class="tech-value">Apr 1, 2026</span></div></div>
             <div class="tech-item"><div class="tech-icon-box">📦</div><div class="tech-content"><span class="tech-label">File type</span><span class="tech-value">APK</span></div></div>
-            <div class="tech-item"><div class="tech-icon-box">💾</div><div class="tech-content"><span class="tech-label">Size</span><span class="tech-value">9.82 MB</span></div></div>
+            <div class="tech-item"><div class="tech-icon-box">💾</div><div class="tech-content"><span class="tech-label">Size</span><span class="tech-value">297.02 mb</span></div></div>
             <div class="tech-item" style="grid-column: 1 / -1;"><div class="tech-icon-box">🔑</div><div class="tech-content"><span class="tech-label">SHA256</span><span class="tech-value">589d836964354c1086841a100cf311fe20c7e100bf58f3d8e1c0c5d74fd4ad6d</span></div></div>
         </div>
     </div>
